@@ -1,0 +1,38 @@
+<section>
+  <!-- Button trigger modal -->
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end m-5">
+  <a href="/admin/addProduct" class="btn btn-primary">Add Product</a>
+  </button>
+  </div>
+  <section class="home-section">
+    <div class="container">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">S.NO</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Selling Price</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <% for (var i=0;i<product.length;i++) {%> 
+      <tr>
+        <th scope="row"><%= i+1 %></th>
+        <td><%= product[i].productName %></td>
+        <td><%= product[i].category %></td>
+        <td><%= product[i].sellingPrice %></td>
+        <td><a class="btn btn-danger" href="">Edit</a></td>
+        <td><a class="btn btn-primary" href="/admin/deleteProduct?id=<%= product[i]._id%>">Delete</a></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+    </div>
+  </section>
+  
+
+

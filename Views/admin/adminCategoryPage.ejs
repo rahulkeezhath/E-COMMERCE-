@@ -1,0 +1,63 @@
+<section class="home-section">
+<!-- Button trigger modal -->
+<div class="d-grid gap-2 d-md-flex justify-content-md-end m-5">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Add Category
+</button>
+</div>
+
+<form action="/admin/addCategory" method="post">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="addCategory">Add Category</label>
+        <input type="text" name="newCategory" id="newCategory">
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+</section>
+<section class="home-section mt-5">
+  <div class="container mt-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">S.NO</th>
+          <th scope="col">Category Name</th>
+          <th scope="col">Edit Category</th>
+          <th scope="col">Delete Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i=0;i<category.length;i++) {%> 
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+          <td><%= category[i].newCategory %></td>
+          <td><a class="btn btn-danger" href="">Edit</a></td>
+          <td><a class="btn btn-primary" href="/admin/deleteCategory?id=<%= category[i]._id%>">Delete</a></td>
+        </tr>
+       <% } %>
+      </tbody>
+    </table>
+   </div>
+</section>
+ <script>
+  
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus()
+})
+ </script>

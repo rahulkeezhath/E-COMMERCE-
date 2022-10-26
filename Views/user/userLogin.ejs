@@ -1,0 +1,48 @@
+    <div class="container">
+      <div class="wrapper">
+        <div class="title"><span>Login Form</span></div>
+        <form action="userLoginAction" method="post" onsubmit="return userLoginValidation()">
+          <div class="row">
+            <i class="fas fa-user"></i>
+            <input type="text" id="uName" name="name" placeholder="Email or Phone">
+            <span class="text-white" id="nameError"></span><br><br>
+          </div><br>
+          <div class="row">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="pass" name="password" placeholder="Password">
+            <span class="text-white" id="passwordError"></span>
+          </div><br><br>
+          <div class="pass"><a href="#">Forgot password?</a></div>
+          <div class="row button">
+            <input type="submit" value="Login">
+          </div>
+          <div class="signup-link">Not a member? <a href="/signup">Signup now</a></div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function userLoginValidation(){
+        let flag=0
+        let name = document.getElementById('uName').value.trim()
+        let password = document.getElementById('pass').value.trim()
+
+        if(name == ''){
+          document.getElementById('nameError').innerHTML = "Name Required"
+          flag=1
+        }else{
+          document.getElementById('nameError').innerHTML = ""
+        }
+
+        if(password == ''){
+          document.getElementById('passwordError').innerHTML = "Password Required"
+          flag=1
+        }else{
+          document.getElementById('passwordError').innerHTML = ""
+        }
+
+        if(flag==1){
+          return false
+        }
+      }
+    </script>

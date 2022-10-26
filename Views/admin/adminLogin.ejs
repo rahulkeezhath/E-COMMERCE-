@@ -1,0 +1,45 @@
+  <div class="container">
+    <div class="myform">
+      <form action="/admin/adminLoginAction" method="post" onsubmit=" return adminLoginValidation()">
+        <h2>ADMIN LOGIN</h2>
+        <input type="text" id="aName" name="name" placeholder="Admin Name">
+        <span id="nameError"></span>
+        <input type="password" id="pass" name="password" placeholder="Password">
+        <span id="passwordError"></span>
+        <div>
+        <button type="submit">LOGIN</button>
+        </div>
+      </form>
+    </div>
+    <div class="image">
+      <img src="../img/bck.jpg">
+    </div>
+  </div>
+
+  <script>
+    function adminLoginValidation(){
+        let flag =0 
+        let name = document.getElementById('aName').value.trim()
+        let password = document.getElementById('pass').value.trim()
+
+        if(name == ''){
+            document.getElementById('nameError').innerHTML = "Name Required"
+            flag=1
+        }else{
+            document.getElementById('nameError').innerHTML = ""
+        }
+
+
+        if(password == ''){
+            document.getElementById('passwordError').innerHTML = "Password Required"
+            flag=1
+        }else{
+            document.getElementById('passwordError').innerHTML = ""
+        }
+        
+        if(flag==1){
+            return false
+        }
+    }
+  </script>
+
