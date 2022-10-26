@@ -1,4 +1,5 @@
 const { response } = require('express')
+const adminProduct = require('../Model/adminProduct')
 const Product = require('../Model/adminProduct')
 
 
@@ -13,10 +14,23 @@ const addNewProduct = (req,res)=>{
         res.render('admin/adminAddProductPage',{admin:true,title:'ADD PRODUCT PAGE'})  
 }
 
+// const addProductPage = (req,res)=>{
+//     Product.doProduct(req.body).then((response)=>{
+//     res.redirect('/admin/adminProductPage')
+// })
+// }
+
 const addProductPage = (req,res)=>{
-    Product.doProduct(req.body).then((response)=>{
-    res.redirect('/admin/adminProductPage')
-})
+ 
+        console.log(req.body)
+        console.log(req.files)
+
+        adminProduct.doProduct({
+            Picture: req.files,
+            addProduct: req.body
+        }).then((response)=>{
+            res.redirect('/admin/adminProductPage')
+        })
 }
 
 
@@ -30,6 +44,6 @@ const deleteProduct = (req,res)=>{
 module.exports={
     adminProductAction,
     addNewProduct,
-    addProductPage,
+     addProductPage,
     deleteProduct
 }

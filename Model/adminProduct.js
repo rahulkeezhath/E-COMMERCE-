@@ -3,11 +3,11 @@ const collection = require("../config/collection")
 const db = require('../config/connection')
 
 module.exports={
-    doProduct:(addProduct)=>{
+    doProduct:(imageID,addProduct)=>{
         return new Promise(async(resolve,reject)=>{
             console.log(addProduct)
-            db.get().collection(collection.ADD_PRODUCT).insertOne(addProduct).then((data)=>{
-                resolve(data)
+            db.get().collection(collection.ADD_PRODUCT).insertOne(imageID,addProduct).then((data)=>{
+                resolve.apply(data)
             })
         })
     },

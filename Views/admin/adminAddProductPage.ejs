@@ -5,7 +5,7 @@
         <section >
             <div class="container">
                 <div class="row pb-5">
-                    <form action="/admin/adminAddNewProduct" method="post">
+                    <form action="/admin/adminAddNewProduct" method="post"  enctype="multipart/form-data">
                         <div class="d-flex">
                             <div class="input-group mb-3 pe-3 w-50">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Product Name</span>
@@ -57,7 +57,7 @@
         
         
                         <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                            <input multiple name="productImage" type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                             <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
                         </div>
                         <div class="d-felx justify-content-center mt-3">

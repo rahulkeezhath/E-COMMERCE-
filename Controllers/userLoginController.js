@@ -15,10 +15,6 @@ const userSignupPage = (req,res)=>{
     res.render('user/userSignup',{admin:false,user:false})
 }
 
-const userSignupAction =(req,res)=>{
-    res.render()
-}
-
 module.exports={
     userLoginPage,
     userLoginAction,
