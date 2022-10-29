@@ -8,7 +8,7 @@ module.exports={
         return new Promise(async(resolve,reject)=>{
             let loginStatus=false
             let response ={}
-            let admin=await db.get().collection(collection.ADMIN_CREDENTIALS).findOne({username:adminData.name})
+            let admin=await db.get().collection(collection.ADMIN_CREDENTIALS).findOne({username:adminData.username})
             if(admin){
                 bcrypt.compare(adminData.password,admin.password).then((status)=>{
                     

@@ -1,20 +1,29 @@
-  <div class="container">
-    <div class="myform">
-      <form action="/admin/adminLoginAction" method="post" onsubmit=" return adminLoginValidation()">
-        <h2>ADMIN LOGIN</h2>
-        <input type="text" id="aName" name="name" placeholder="Admin Name">
-        <span id="nameError"></span>
-        <input type="password" id="pass" name="password" placeholder="Password">
-        <span id="passwordError"></span>
-        <div>
-        <button type="submit">LOGIN</button>
-        </div>
-      </form>
-    </div>
-    <div class="image">
-      <img src="/admin/img/bck.jpg">
-    </div>
-  </div>
+<link rel="stylesheet" href="../admin/css/admin.css">
+  <form action="/admin/adminLoginAction" method="post" onsubmit="return adminLoginValidation()">
+		<div class="login-box">
+			<h1>Login</h1>
+
+			<div class="textbox">
+				<i class="fa fa-user" aria-hidden="true"></i>
+				<input type="text" placeholder="Name"
+						name="username" id="aName" value="">
+            
+			</div>
+      <span id="nameError"></span>
+
+			<div class="textbox">
+				<i class="fa fa-lock" aria-hidden="true"></i>
+				<input type="password" placeholder="Password"
+						name="password" id="pass" value="">
+			</div>
+      <span id="passwordError"></span>
+
+
+			<input class="button" type="submit"
+				 value="Sign In">
+		</div>
+	</form>
+
 
   <script>
     function adminLoginValidation(){

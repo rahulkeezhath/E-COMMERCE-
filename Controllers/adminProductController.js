@@ -1,6 +1,7 @@
 const { response } = require('express')
-const adminProduct = require('../Model/adminProduct')
 const Product = require('../Model/adminProduct')
+const category = require('../Model/adminCategory')
+const brand = require('../Model/adminBrand')
 
 
 const adminProductAction = (req,res)=>{
@@ -11,23 +12,43 @@ const adminProductAction = (req,res)=>{
 }
 
 const addNewProduct = (req,res)=>{
-        res.render('admin/adminAddProductPage',{admin:true,title:'ADD PRODUCT PAGE'})  
+        category.showCategory().then((category)=>{
+            brand.showBrand().then((brand)=>{
+                res.render('admin/adminAddProductPage',{admin:true,title:'ADD PRODUCT PAGE',category,brand})
+        
+            })
+        })
+          
 }
 
-// const addProductPage = (req,res)=>{
-//     Product.doProduct(req.body).then((response)=>{
-//     res.redirect('/admin/adminProductPage')
-// })
-// }
+const editProduct = async(req,res)=>{
+    let productId = req.query.id
+    let product = await Product.getProductDetails(productId)
+    category.showCategory().then((category)=>{
+    brand.showBrand().then((brand)=>{
+        res.render('admin/adminEditProductPage',{admin:true,title:'EDIT PRODUCT PAGE',category,brand,product})
+    })
+    })
+}
+
 
 const addProductPage = (req,res)=>{
- 
-        console.log(req.body)
-        console.log(req.files)
-
-        adminProduct.doProduct({
-            Picture: req.files,
-            addProduct: req.body
+       const{
+        productName,
+        sellingPrice,
+        category,
+        brand,
+        quantity,
+        productDescription,
+       }= req.body
+        Product.doProduct({
+            Picture: req.file.filename,
+            productName,
+            sellingPrice,
+            category,
+            brand,
+            quantity,
+            productDescription
         }).then((response)=>{
             res.redirect('/admin/adminProductPage')
         })
@@ -41,9 +62,25 @@ const deleteProduct = (req,res)=>{
     })
 }
 
+
+const editProductAction = (req,res)=>{
+    console.log(req.body);
+    let id = req.body.id
+    let newProductData= req.body
+    let newImageId = req.file.filename
+    Product.editProduct(id, newProductData, newImageId).then(()=>{
+        Product.showProduct().then((product)=>{
+            
+            res.render("admin/adminProductPage",{admin:true,title:'PRODUCT CONTROL PAGE',product})
+        })
+    })
+}
+
 module.exports={
     adminProductAction,
     addNewProduct,
      addProductPage,
-    deleteProduct
+     editProduct,  
+    deleteProduct,
+    editProductAction
 }

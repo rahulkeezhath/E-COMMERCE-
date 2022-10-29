@@ -4,7 +4,7 @@ const adminLoginPage = (req,res)=>{
     res.render('admin/adminLogin',{admin:false})
 }
 const adminLoginAction = (req,res)=>{
-    console.log(req.body)
+    console.log(req.body);
     adminLogin.doLogin(req.body).then((response)=>{
         if(response.status){
             res.render('admin/adminHome',{admin:true,title:'ADMIN HOME'})

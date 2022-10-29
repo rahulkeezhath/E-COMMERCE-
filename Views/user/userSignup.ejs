@@ -1,33 +1,228 @@
-<div class="wrapper">
-	<div class="header">
-		<h2>Registration Form</h2>
-	</div>
-	<form id="form" class="form">
-		<div class="form-control">
-			<input type="text" placeholder="Enter name" id="name" />
-			<i class="fas fa-check-circle"></i>
-			<i class="fas fa-times-circle"></i>
-			<small>Error message</small>
-		</div>
-		<div class="form-control">
-			<input type="email" placeholder="Enter email" id="email" />
-			<i class="fas fa-check-circle"></i>
-			<i class="fas fa-times-circle"></i>
-			<small>Error message</small>
-		</div>
-		<div class="form-control">
-			<input type="password" placeholder="Password" id="password"/>
-			<i class="fas fa-check-circle"></i>
-			<i class="fas fa-times-circle"></i>
-			<small>Error message</small>
-		</div>
-		<div class="form-control">
-			<input type="password" placeholder="Confirm Password" id="confirm"/>
-			<i class="fas fa-check-circle"></i>
-			<i class="fas fa-times-circle"></i>
-			<small>Error message</small>
-		</div>
-		<button>Submit</button>
-	</form>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>Foody</title>
+  <!-- loader-->
+  <link href="../user/css/pace.min.css" rel="stylesheet"/>
+  <script src="../user/js/pace.min.js"></script>
+  <!--favicon-->
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <!-- Bootstrap core CSS-->
+  <link href="../user/css/botstap.min.css" rel="stylesheet"/>
+  <!-- animate CSS-->
+  <link href="../user/css/animat.css" rel="stylesheet" type="text/css"/>
+  <!-- Icons CSS-->
+  <link href="../user/css/icons.css" rel="stylesheet" type="text/css"/>
+  <!-- Custom Style-->
+  <link href="../user/css/app-style.css" rel="stylesheet"/>
+  
+</head>
 
+<body class="bg-theme bg-theme1">
+
+<!-- start loader -->
+   <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
+   <!-- end loader -->
+
+<!-- Start wrapper-->
+ <div id="wrapper">
+
+	<div class="card card-authentication1 mx-auto my-4">
+		<div class="card-body">
+		 <div class="card-content p-2">
+		 	<div class="text-center">
+		 		<img src="../user/img/foody.jpeg" style="width: 30%; height:30%" alt="logo icon">
+		 	</div>
+		  <div class="card-title text-uppercase text-center py-3">Sign Up</div>
+		    <form action="/signup" method="post" onsubmit="return userSignupValidation()">
+			  <div class="form-group">
+			  <label for="exampleInputName" class="sr-only">Name</label>
+			   <div class="position-relative has-icon-right">
+				  <input type="text" name="name"  id="name" class="form-control input-shadow" placeholder="Enter Your Name">
+				  <div class="form-control-position">
+					  <i class="icon-user"></i>
+				  </div>
+			   </div>
+			  </div>
+			  <span class="text-danger" id="nameError"></span><br>
+			  <div class="form-group">
+			  <label for="exampleInputEmailId" class="sr-only">Email ID</label>
+			   <div class="position-relative has-icon-right">
+				  <input type="email" name="email" id="email" class="form-control input-shadow" placeholder="Enter Your Email ID">
+				  <div class="form-control-position">
+					  <i class="icon-envelope-open"></i>
+				  </div>
+			   </div>
+			  </div>
+			  <span class="text-danger" id="emailError"></span><br>
+			  <div class="form-group">
+				<label for="exampleInputName" class="sr-only">Phone Number</label>
+				 <div class="position-relative has-icon-right">
+					<input type="number" name="phoneNumber" id="phoneNumber" class="form-control input-shadow" placeholder="Enter Your Phone Number">
+					<div class="form-control-position">
+						<i class="icon-user"></i>
+					</div>
+				 </div>
+				</div>
+				<span class="text-danger" id="phoneNumberError"></span><br>
+			  <div class="form-group">
+			   <label for="exampleInputPassword" class="sr-only">Password</label>
+			   <div class="position-relative has-icon-right">
+				  <input type="password" name="password" id="pass" class="form-control input-shadow" placeholder="Choose Password">
+				  <div class="form-control-position">
+					  <i class="icon-lock"></i>
+				  </div>
+			   </div>
+			  </div>
+			  <span class="text-danger" id="passwordError"></span><br>
+			  <div class="form-group">
+				<label for="exampleInputPassword" class="sr-only">Confirm Password</label>
+				<div class="position-relative has-icon-right">
+				   <input type="password" name="confirmPassword" id="confirmPass" class="form-control input-shadow" placeholder="Confirm Password">
+				   <div class="form-control-position">
+					   <i class="icon-lock"></i>
+				   </div>
+				</div>
+			   </div>
+			   <span class="text-danger" id="confirmPasswordError"></span><br>
+			   <div class="form-group">
+			     <div class="icheck-material-white">
+                   <input type="checkbox" id="user-checkbox" checked="" />
+                   <label for="user-checkbox">I Agree With Terms & Conditions</label>
+			     </div>
+			    </div>
+		   </div>
+		  </div>
+
+		  <button type="submit" class="btn btn-light btn-block waves-effect waves-light">Sign Up</button>
+		</form>
+		  
+
+		  <div class="card-footer text-center py-3">
+		    <p class="text-warning mb-0">Already have an account? <a href="/login"> Sign In here</a></p>
+		  </div>
+	     </div>
+    
+     <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+	
+	<!--start color switcher-->
+   <div class="right-sidebar">
+    <div class="switcher-icon">
+      <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+    </div>
+    <div class="right-sidebar-content">
+
+      <p class="mb-0">Gaussion Texture</p>
+      <hr>
+      
+      <ul class="switcher">
+        <li id="theme1"></li>
+        <li id="theme2"></li>
+        <li id="theme3"></li>
+        <li id="theme4"></li>
+        <li id="theme5"></li>
+        <li id="theme6"></li>
+      </ul>
+
+      <p class="mb-0">Gradient Background</p>
+      <hr>
+      
+      <ul class="switcher">
+        <li id="theme7"></li>
+        <li id="theme8"></li>
+        <li id="theme9"></li>
+        <li id="theme10"></li>
+        <li id="theme11"></li>
+        <li id="theme12"></li>
+		<li id="theme13"></li>
+        <li id="theme14"></li>
+        <li id="theme15"></li>
+      </ul>
+      
+     </div>
+   </div>
+  <!--end color switcher-->
+	
+	</div><!--wrapper-->
+	
+  <!-- Bootstrap core JavaScript-->
+  <script src="../user/js/jquery.min.js"></script>
+  <script src="../user/js/poper.min.js"></script>
+  <script src="../user/js/bootstap.min.js"></script>
+	
+  <!-- sidebar-menu js -->
+  <script src="../user/js/sidebar-menu.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="../user/js/app-script.js"></script>
+  
+</body>
+</html>
+
+
+<script>
+	function userSignupValidation(){
+	  let flag=0
+	  let name = document.getElementById('name').value.trim()
+	  let email = document.getElementById('email').value.trim()
+	  let phoneNumber = document.getElementById('phoneNumber').value.trim()
+	  let password = document.getElementById('pass').value.trim()
+	  let confirmPassword = document.getElementById('confirmPass').value.trim()
+
+	  if(name == ''){
+		document.getElementById('nameError').innerHTML = "Name Required"
+		flag=1
+	  }else if(name.length<3){
+		document.getElementById('nameError').innerHTML="Enter atleast 3 character"
+		flag=1
+	  }else{
+		document.getElementById('nameError').innerHTML = ""
+	  }
+
+	  if(email == ''){
+		document.getElementById('emailError').innerHTML = "Email Required"
+		flag=1
+	  }else if(email.length<5){
+		document.getElementById('emailError').innerHTML="Enter atleast 5 character"
+		flag=1
+	  }else{
+		document.getElementById('emailError').innerHTML = ""
+	  }
+
+	  if(phoneNumber == ''){
+		document.getElementById('phoneNumberError').innerHTML = "Phone Number Required"
+		flag=1
+	  }else if(phoneNumber.length<10){
+		document.getElementById('phoneNumberError').innerHTML="Enter atleast 10 digits"
+		flag=1
+	  }else{
+		document.getElementById('phoneNumberError').innerHTML = ""
+	  }
+
+
+	  if(password == ''){
+		document.getElementById('passwordError').innerHTML = "Password Required"
+		flag=1
+	  }else{
+		document.getElementById('passwordError').innerHTML = ""
+	  }
+ 
+	  if(confirmPassword == ''){
+		document.getElementById('confirmPasswordError').innerHTML = "Password Required"
+		flag=1
+	  }else{
+		document.getElementById('confirmPasswordError').innerHTML = ""
+	  }
+
+	  if(flag==1){
+		return false
+	  }
+	}
+  </script>
