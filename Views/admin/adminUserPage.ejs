@@ -4,8 +4,7 @@
         <thead>
           <tr>
             <th scope="col">S.No</th>
-            <th scope="col">User Id</th>
-            <th scope="col">User Name</th>
+            <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Blocked User</th>
             <th scope="col">Unblocked User</th>
@@ -13,17 +12,30 @@
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>#43567865435678765</td>
-            <td>Anurag</td>
-            <td>anu123@gmail.com</td>
+            <% for(var i=0;i<user_Details.length;i++) { %>
+            <th scope="row"><%= i+1 %></th>
+            <td><%= user_Details[i].name %></td>
+            <td><%= user_Details[i].email %></td>
             <td><a class="btn btn-danger" href="">Block</a></td>
             <td><a class="btn btn-primary" href="">Unblock</a></td>
           </tr>
+          <% } %>
         </tbody>
       </table>
      </div>
   </section>
-  
+
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+   let sidebarBtn = document.querySelector(".sidebarBtn");
+   sidebarBtn.onclick = function() {
+   sidebar.classList.toggle("active");
+   if(sidebar.classList.contains("active")){
+   sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right"); 
+   }else
+   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+   }
+   </script>
+ 
  
 

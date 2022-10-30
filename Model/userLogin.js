@@ -5,9 +5,8 @@ const db = require('../config/connection')
 module.exports={
     doLogin:(userData)=>{
         return new Promise(async(resolve,reject)=>{
-            let loginStatus=false
             let response ={}
-            let user = await db.get().collection(collection.USER_CREDENTIALS).findOne({name:userData.email})
+            let user = await db.get().collection(collection.USER_CREDENTIALS).findOne({email:userData.email})
             if(user){
                 bcrypt.compare(userData.password,user.password).then((status)=>{
                     console.log(status);

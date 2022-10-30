@@ -4,6 +4,7 @@ const admin = require('../Controllers/adminLoginController')
 const addCategory = require('../Controllers/adminCategoryController')
 const addBrand = require('../Controllers/adminBrandController')
 const addProduct = require('../Controllers/adminProductController')
+const adminUser = require('../Controllers/adminUserController')
 const multer = require('multer')
 const { route } = require('./user')
 
@@ -36,16 +37,18 @@ fileFilter:(req,file,cb)=>{
 
 
 
+
 //Admin router
+
 router.get('/',admin.adminLoginPage)
 router.post('/adminLoginAction',admin.adminLoginAction)
 router.get('/adminHome',admin.adminHome)  
-
-//User router
-
-router.get('/adminUserpage',admin.adminUserPage)  
+router.get('/adminLogout',admin.adminLoginPage) 
 
 
+//User Router
+
+router.get('/adminUserPage',adminUser.adminUserPage)
 
 
 //Category router
@@ -70,11 +73,8 @@ router.post('/editProductAction',upload.single('productImage'),addProduct.editPr
 router.get('/deleteProduct',addProduct.deleteProduct)
 
 // Order router
+
 router.get('/adminOrderPage',admin.adminOrderPage)
-
-
-// Logout router 
-router.get('/adminLogout',admin.adminLoginPage) 
 
 
 module.exports = router

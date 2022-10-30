@@ -64,7 +64,6 @@ const deleteProduct = (req,res)=>{
 
 
 const editProductAction = (req,res)=>{
-    console.log(req.body);
     let id = req.body.id
     let newProductData= req.body
     let newImageId = req.file.filename

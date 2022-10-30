@@ -11,16 +11,13 @@ const db = require('./config/connection')
 
 
 app.use(express.static('public'))
-app.use('/css',express.static(__dirname+'public/css'))
-app.use('/img',express.static(__dirname+'public/img'))
-app.use('/js',express.static(__dirname+'public/js'))
 app.use(expressLayouts)
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(session({secret:"key",
+app.use(session({secret:"123",
 saveUninitialized:true,
-cookie:{maxAge:600000},
+cookie:{maxAge:300000},
 resave:false}))
 
 app.use(cookie())
@@ -32,7 +29,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.set('views','./views')
+app.set('views',path.join(__dirname,'views'))
 app.set('view engine','ejs')
 app.set('layout','./layout/layout')
 

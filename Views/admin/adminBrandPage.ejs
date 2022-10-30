@@ -75,18 +75,8 @@
     <script>
       function brandValidation(){
         let flag=0
-        let category = document.getElementById('categoryName').value.trim
         let brand = document.getElementById('brand').value.trim()
-    
-        if(category === ''){
-          document.getElementById('categoryName').innerHTML = 'Category Required'
-          flag=1
-        }
-        else{
-          document.getElementById('categoryName').innerHTML= ''
-        }
-
-        
+     
         if(brand === ''){
           document.getElementById('brandError').innerHTML = 'Brand Required'
           flag=1
@@ -101,3 +91,14 @@
       }
     
     </script>
+      <script>
+        let sidebar = document.querySelector(".sidebar");
+       let sidebarBtn = document.querySelector(".sidebarBtn");
+       sidebarBtn.onclick = function() {
+       sidebar.classList.toggle("active");
+       if(sidebar.classList.contains("active")){
+       sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right"); 
+       }else
+       sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+       }
+       </script>

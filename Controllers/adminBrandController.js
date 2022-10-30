@@ -3,7 +3,6 @@ const category = require('../Model/adminCategory')
 
 const adminBrandAction = (req,res)=>{
     brand.showBrand().then((brand)=>{
-        console.log(category);
      res.render('admin/adminBrandPage',{admin:true,title:'BRAND CONTROL PAGE',brand,category})
     })
     }
