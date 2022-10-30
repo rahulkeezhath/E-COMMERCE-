@@ -43,7 +43,7 @@ fileFilter:(req,file,cb)=>{
 router.get('/',admin.adminLoginPage)
 router.post('/adminLoginAction',admin.adminLoginAction)
 router.get('/adminHome',admin.adminHome)  
-router.get('/adminLogout',admin.adminLoginPage) 
+router.get('/adminLogout',admin.adminLogout) 
 
 
 //User Router
