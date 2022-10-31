@@ -2,6 +2,19 @@ const e = require('express')
 const { response } = require('express')
 const { ReturnDocument } = require('mongodb')
 const userLogin = require('../Model/userLogin')
+const nodemailer = require('nodemailer')
+
+
+let mailTransporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'rahulkeezhath@gmail.com',
+        pass: 'dqpokhvqyfryntha'
+    }
+})
+ 
+const OTP = `${Math.floor(1000+ Math.random() * 9000 )}`;
+
 
 const userLoginPage = (req,res)=>{
     res.render('user/userHome',{admin:false,user:true})
@@ -30,13 +43,43 @@ const userSignupPage = (req,res)=>{
 
 const userSignupAction = (req,res)=>{
     console.log(req.body);
-    userLogin.doSignup(req.body).then((response)=>{
+    let verified = 0
+
+    const{name,email,phoneNumber,password} = req.body
+        let mailDetails = {
+            from: 'rahulkeezhath@gmail.com',
+            to: email,
+            subject: 'FOODY REGISTRATION',
+            html: `<p> YOUR OTP FOR REGISTRATION IN FOODY IS ${OTP}</p>`
+        }
+         
+        mailTransporter.sendMail(mailDetails, function(err, data) {
+            if(err) {
+                console.log('Error Occurs');
+            } else {
+                console.log('Email sent successfully');
+            }
+        })
+    
+    userLogin.doSignup(verified,name,email,phoneNumber,password).then((response)=>{
+        userID = response.insertedId
     console.log(response);
-        res.render('user/userHomeLanding',{admin:false,user:true})
+        res.render('user/otpVerification',{admin:false,user:true})
     })
     
 }
 
+const verifyOtp = (req,res)=>{
+    if(OTP == req.body.Otp){
+        userLogin.userVerified(userID).then((response)=>{
+            console.log('Success');
+            res.render('user/userHomeLanding',{admin:false})
+        })
+       
+    }else{
+        console.log('Not Successful');
+    }
+}
 
 
 const userSignoutAction = (req,res)=>{
@@ -49,5 +92,6 @@ module.exports={
     userLoginControl,
     userSignupAction,
     userSignupPage,
+    verifyOtp,
     userSignoutAction,
 }

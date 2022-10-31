@@ -10,6 +10,6 @@ router.post("/login",user.userLoginControl)
 router.post('/signup',user.userSignupAction)
 router.get('/signup',user.userSignupPage)
 router.get('/logout',user.userSignoutAction)
-
+router.post('/verifyOtp',user.verifyOtp)
 
 module.exports=router

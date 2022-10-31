@@ -1,3 +1,4 @@
+const { response } = require('express')
 const { ObjectId } = require('mongodb')
 const collection = require('../config/collection')
 const db = require('../config/connection')
@@ -17,6 +18,20 @@ module.exports={
             resolve(category)
         })
     },
+
+    editCategory:(categoryId,category)=>{
+        return new Promise(async(resolve,reject)=>{
+            console.log(category);
+            db.get().collection(collection.ADD_CATEGORY).updateOne({_id:ObjectId(categoryId)},{
+                $set:{
+                    newCategory:category.newCategory
+                }
+            }).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+
     deleteCategory:(categoryId)=>{
         return new Promise(async(resolve,reject)=>{
             await db.get().collection(collection.ADD_CATEGORY).deleteOne({_id:ObjectId(categoryId)}).then((response)=>{

@@ -17,7 +17,7 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(session({secret:"123",
 saveUninitialized:true,
-cookie:{maxAge:300000},
+cookie:{maxAge:600000},
 resave:false}))
 
 app.use(cookie())

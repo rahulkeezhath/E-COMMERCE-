@@ -3,9 +3,11 @@ const category = require('../Model/adminCategory')
 
 const adminBrandAction = (req,res)=>{
     if(req.session.admin){
+        category.showCategory().then((category)=>{  
     brand.showBrand().then((brand)=>{
      res.render('admin/adminBrandPage',{admin:true,title:'BRAND CONTROL PAGE',brand,category})
     })
+})
     }else{
         res.render('admin/adminLogin',{admin:false})
     }

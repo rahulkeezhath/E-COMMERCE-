@@ -17,8 +17,8 @@
           </div>
           <div class="modal-body">
             <label for="addSubCategory">SELECT CATEGORY</label>
-            <select class="form-select" aria-label="Default select example" name="categoryName" id="categoryName">
-                <option selected></option>
+            <select class="form-select" aria-label="Default select example" name="categoryName" id="categoryName" required>
+              <option selected><%= category.newCategory %></option>
                 <% for(var i=0; i<category.length; i++) { %>
                   <option value="<%= category[i].newCategory%>"><%= category[i].newCategory%></option>
                   <% } %>
@@ -44,8 +44,8 @@
               <th scope="col">S.NO</th>
               <th scope="col">Category Name</th>
               <th scope="col">Brand</th>
-              <th scope="col">Edit Category</th>
-              <th scope="col">Delete Category</th>
+              <th scope="col">Edit Brand</th>
+              <th scope="col">Delete Brand</th>
             </tr>
           </thead>
           <tbody>
@@ -55,7 +55,7 @@
               <td><%= brand[i].categoryName %></td>
               <td><%= brand[i].brand %></td>
               <td><a class="btn btn-danger" href="">Edit</a></td>
-              <td><a class="btn btn-primary" href="/admin/deleteBrand?id=<%= brand[i]._id%>">Delete</a></td>
+              <td><a class="btn btn-primary" href="/admin/deleteBrand?id=<%= brand[i]._id%>" onclick=" return confirm('Are you want to delete <%= brand[i].brand%>')">Delete</a></td>
             </tr>
             <% } %>
           </tbody>

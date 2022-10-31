@@ -56,6 +56,7 @@ router.get('/adminUserPage',adminUser.adminUserPage)
 router.get('/adminCategoryPage',addCategory.adminCategoryAction)
 router.post('/addCategory',addCategory.addNewCategory)
 router.get('/deleteCategory',addCategory.deleteCategory)
+router.get('/editCategory',addCategory.editCategory)
 
 // Brand router
 
