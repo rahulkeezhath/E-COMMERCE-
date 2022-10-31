@@ -24,19 +24,7 @@ const addNewCategory = (req,res)=>{
 }
 }
 
-const editCategory = (req,res)=>{
-    if(req.session.admin){
-        let categoryId = req.query.id
-        let newCategory = req.body
-        // adminCategory.editCategory(categoryId,newCategory).then(()=>{
-            adminCategory.showCategory().then((category)=>{
-                res.render('admin/adminEditCategoryPage',{admin:true,title:'CATEGORY CONTROL PAGE',category})
-            })
-        // })
-    }else{
-        res.render('admin/adminLogin',{admin:false})
-    }
-}
+
 
 
 const deleteCategory = (req,res)=>{
@@ -53,6 +41,5 @@ const deleteCategory = (req,res)=>{
 module.exports={
     adminCategoryAction,  
     addNewCategory,
-    editCategory,
     deleteCategory   
 }

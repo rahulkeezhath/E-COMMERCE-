@@ -19,18 +19,7 @@ module.exports={
         })
     },
 
-    editCategory:(categoryId,category)=>{
-        return new Promise(async(resolve,reject)=>{
-            console.log(category);
-            db.get().collection(collection.ADD_CATEGORY).updateOne({_id:ObjectId(categoryId)},{
-                $set:{
-                    newCategory:category.newCategory
-                }
-            }).then((response)=>{
-                resolve(response)
-            })
-        })
-    },
+ 
 
     deleteCategory:(categoryId)=>{
         return new Promise(async(resolve,reject)=>{

@@ -29,6 +29,7 @@
 </form>
 </div>
 </section>
+
 <section class="home-section mt-5">
   <div class="container mt-5">
     <table class="table">
@@ -45,7 +46,7 @@
         <tr>
           <th scope="row"><%= i+1 %></th>
           <td><%= category[i].newCategory %></td>
-          <td><a class="btn btn-danger" href="/admin/editCategory?id=<%= category[i]._id%>">Edit</a></td>
+          <td><a class="btn btn-danger" href="">Edit</a></td>
           <td><a class="btn btn-primary" href="/admin/deleteCategory?id=<%= category[i]._id%>" onclick="return confirm('Are you want to delete <%= category[i].newCategory %>')">Delete</a></td>
         </tr>
        <% } %>
