@@ -3,9 +3,9 @@ const adminLogin = require('../Model/adminLogin')
 
 const adminLoginPage = (req,res)=>{
     if(req.session.admin){
-    res.render('admin/adminHome',{admin:true,title:'ADMIN HOME PAGE'})
+    res.render('admin/adminHome',{admin:true,user:false, title:'ADMIN HOME PAGE'})
 }else{
-    res.render('admin/adminLogin',{admin:false})
+    res.render('admin/adminLogin',{admin:false,user:false})
 }
 }
 const adminLoginAction = (req,res)=>{
@@ -13,7 +13,7 @@ const adminLoginAction = (req,res)=>{
     adminLogin.doLogin(req.body).then((response)=>{
         if(response.status){
             req.session.admin = true
-            res.render('admin/adminHome',{admin:true,title:'ADMIN HOME'})
+            res.render('admin/adminHome',{admin:true,user:false,title:'ADMIN HOME'})
         }
         else{
             res.redirect('/admin')
@@ -23,9 +23,9 @@ const adminLoginAction = (req,res)=>{
 
 const adminHome = (req,res)=>{
     if(req.session.admin){
-    res.render('admin/adminHome',{admin:true,title:'DASHBOARD'})
+    res.render('admin/adminHome',{admin:true,user:false, title:'DASHBOARD'})
 }else{
-    res.render('admin/adminLogin',{admin:false})
+    res.render('admin/adminLogin',{admin:false,user:false})
 }
 }
 
@@ -39,7 +39,7 @@ const adminLogout = (req,res)=>{
 }
 
 const adminOrderPage = (req,res)=>{
-    res.render('admin/adminOrderPage',{admin:true,title:'ORDERS'})
+    res.render('admin/adminOrderPage',{admin:true,user:false, title:'ORDERS'})
 }
 
 module.exports={

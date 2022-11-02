@@ -5,9 +5,8 @@
       Add Brand
     </button>
     </div>
-    
+     <!-- Add Category Modal -->
     <form action="/admin/addBrand" method="post" onsubmit="return brandValidation()">
-    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -23,8 +22,11 @@
                   <option value="<%= category[i].newCategory%>"><%= category[i].newCategory%></option>
                   <% } %>
               </select><br>
+              <input type="text" style="display: none;" id="brandID" name="brandID">
+              <div>
               <label for="addCategory">Brand</label>
             <input type="text" name="brand" id="brand"><br><br>
+          </div>
           </div>
           <span class="text-danger text-center" id="brandError"></span>
           <div class="modal-footer">
@@ -35,7 +37,43 @@
       </div>
     </form>
     </div>
+
+         <!-- Update Category Modal -->
+    <form action="/admin/editBrand" method="post" onsubmit="return brandValidation()">
+      <div class="modal fade" id="exampleModalh" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Update Category</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <label for="addSubCategory">SELECT CATEGORY</label>
+              <select class="form-select" aria-label="Default select example" name="categoryName" id="categoryName" required>
+                <option selected><%= category.newCategory %></option>
+                  <% for(var i=0; i<category.length; i++) { %>
+                    <option value="<%= category[i].newCategory%>"><%= category[i].newCategory%></option>
+                    <% } %>
+                </select><br>
+                <input type="text" style="display: none;" id="brandID" name="brandID">
+                <div>
+                <label for="addCategory">Brand</label>
+                 <% for(var i=0; i<brand.length; i++){ %>
+                  <input type="text" name="brand" id="brand"  value="<%= brand[i].brand %>"
+                <% } %>
+            </div>
+            </div>
+            <span class="text-danger text-center" id="brandError"></span>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">UPDATE</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
     </section>
+
     <section class="home-section mt-5">
       <div class="container mt-5">
         <table class="table">
@@ -54,7 +92,7 @@
               <th scope="row"><%= i+1 %></th>
               <td><%= brand[i].categoryName %></td>
               <td><%= brand[i].brand %></td>
-              <td><a class="btn btn-danger" href="">Edit</a></td>
+              <td><a class="btn btn-danger" href="" data-bs-toggle="modal" data-bs-target="#exampleModalh" onclick="brandEdit('<%= brand[i]._id %>','<%= brand[i].brand %>')">Edit</a></td>
               <td><a class="btn btn-primary" href="/admin/deleteBrand?id=<%= brand[i]._id%>" onclick=" return confirm('Are you want to delete <%= brand[i].brand%>')">Delete</a></td>
             </tr>
             <% } %>
@@ -102,3 +140,13 @@
        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
        }
        </script>
+
+<script>
+  function brandEdit(id,brand){
+      let brandEditField = document.getElementById('brand');
+      let brandID = document.getElementById('brandID');
+
+      brandEditField.value = brand;
+      brandID.value = id
+  }
+</script>

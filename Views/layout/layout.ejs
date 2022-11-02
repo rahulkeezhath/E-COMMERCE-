@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foody</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -21,28 +22,17 @@
   <body>
 
     <% if(admin) { %>
+      <%- include('../partials/adminSidebar.ejs') %>
       <%- include('../partials/adminHeader.ejs') %>
-     <% } %>
+    <% } if(user) { %>
+      <%- include('../partials/userHeader.ejs') %>
+      <% } %>
     <%- body %>
 
     
-
-
-
-    <script>
-      let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".sidebarBtn");
-    sidebarBtn.onclick = function() {
-     sidebar.classList.toggle("active");
-     if(sidebar.classList.contains("active")){
-     sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
-    }else
-     sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-    }
-    </script>
-    
-
-      
+    <%  if(user) {%>
+      <%- include('../partials/userFooter.ejs') %>
+      <% } %>
 
     <!-- JavaScript Bundle with Popper -->
     <script

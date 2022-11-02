@@ -7,10 +7,10 @@ const adminCategory = require('../Model/adminCategory')
 const adminCategoryAction = (req,res)=>{  
     if(req.session.admin){
     adminCategory.showCategory().then((category)=>{
-        res.render('admin/adminCategoryPage',{admin:true,title:"CATEGORY CONTROL PAGE",category})
+        res.render('admin/adminCategoryPage',{admin:true, user:false, title:"CATEGORY CONTROL PAGE",category})
     })
 }else{
-    res.render('admin/adminLogin',{admin:false})
+    res.render('admin/adminLogin',{admin:false,user:false})
 }
 }
 
@@ -20,7 +20,7 @@ const addNewCategory = (req,res)=>{
         res.redirect('/admin/adminCategoryPage') 
     })
 }else{
-    res.render('admin/adminLogin',{admin:false})
+    res.render('admin/adminLogin',{admin:false,user:false})
 }
 }
 
@@ -34,7 +34,7 @@ const deleteCategory = (req,res)=>{
         res.redirect('/admin/adminCategoryPage')
     })
 }else{
-    res.render('admin/adminLogin',{admin:false})
+    res.render('admin/adminLogin',{admin:false,user:false})
 }
 }
 

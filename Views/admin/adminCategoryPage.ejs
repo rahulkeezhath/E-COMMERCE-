@@ -37,7 +37,6 @@
         <tr>
           <th scope="col">S.NO</th>
           <th scope="col">Category Name</th>
-          <th scope="col">Edit Category</th>
           <th scope="col">Delete Category</th>
         </tr>
       </thead>
@@ -46,7 +45,6 @@
         <tr>
           <th scope="row"><%= i+1 %></th>
           <td><%= category[i].newCategory %></td>
-          <td><a class="btn btn-danger" href="">Edit</a></td>
           <td><a class="btn btn-primary" href="/admin/deleteCategory?id=<%= category[i]._id%>" onclick="return confirm('Are you want to delete <%= category[i].newCategory %>')">Delete</a></td>
         </tr>
        <% } %>

@@ -62,6 +62,8 @@ router.get('/deleteCategory',addCategory.deleteCategory)
 
 router.get('/adminBrandPage',addBrand.adminBrandAction)
 router.post('/addBrand',addBrand.addNewBrand)
+router.get('/editBrand',addBrand.getBrand)
+router.post('/editBrand',addBrand.editBrandAction)
 router.get('/deleteBrand',addBrand.deleteBrand)
 
 // Product router

@@ -24,7 +24,7 @@ const userLoginPage = (req,res)=>{
 const userLoginControl = (req,res)=>{
     userLogin.doLogin(req.body).then((response)=>{
         if(response.status){
-        res.render('user/userHomeLanding',{admin:false,user:true})
+        res.render('user/userHomeLanding',{admin:false,user:false})
     }else{
         res.redirect('/login')
     }
@@ -32,7 +32,7 @@ const userLoginControl = (req,res)=>{
 }
 
 const userLoginAction = (req,res)=>{
-    res.render('user/userLogin',{admin:false,user:true})
+    res.render('user/userLogin',{admin:false,user:false})
 }
 
 
@@ -64,7 +64,7 @@ const userSignupAction = (req,res)=>{
     userLogin.doSignup(verified,name,email,phoneNumber,password).then((response)=>{
         userID = response.insertedId
     console.log(response);
-        res.render('user/otpVerification',{admin:false,user:true})
+        res.render('user/otpVerification',{admin:false,user:false})
     })
     
 }
@@ -73,7 +73,7 @@ const verifyOtp = (req,res)=>{
     if(OTP == req.body.Otp){
         userLogin.userVerified(userID).then((response)=>{
             console.log('Success');
-            res.render('user/userHomeLanding',{admin:false})
+            res.render('user/userHomeLanding',{admin:false,user:false})
         })
        
     }else{
@@ -83,7 +83,7 @@ const verifyOtp = (req,res)=>{
 
 
 const userSignoutAction = (req,res)=>{
-    res.render('user/userHome',{admin:false,user:false})
+    res.render('user/userHome',{admin:false,user:true})
 }
 
 module.exports={

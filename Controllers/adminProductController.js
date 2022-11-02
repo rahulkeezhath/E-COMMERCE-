@@ -8,10 +8,10 @@ const e = require('express')
 const adminProductAction = (req,res)=>{
     if(req.session.admin){
     Product.showProduct().then((product)=>{
-        res.render('admin/adminProductPage',{admin:true,title:'PRODUCTS CONTROL PAGE',product})
+        res.render('admin/adminProductPage',{admin:true,user:false, title:'PRODUCTS CONTROL PAGE',product})
     })
 }else{
-    res.render('admin/adminLogin',{admin:false})
+    res.render('admin/adminLogin',{admin:false,user:false})
 }
 }
 
@@ -19,12 +19,12 @@ const addNewProduct = (req,res)=>{
     if(req.session.admin){
         category.showCategory().then((category)=>{
             brand.showBrand().then((brand)=>{
-                res.render('admin/adminAddProductPage',{admin:true,title:'ADD PRODUCT PAGE',category,brand})
+                res.render('admin/adminAddProductPage',{admin:true, user:false, title:'ADD PRODUCT PAGE',category,brand})
         
             })
         })
     }else{
-        res.render('admin/adminLogin',{admin:false})
+        res.render('admin/adminLogin',{admin:false,user:false})
     }
           
 }
@@ -35,11 +35,11 @@ const editProduct = async(req,res)=>{
     let product = await Product.getProductDetails(productId)
     category.showCategory().then((category)=>{
     brand.showBrand().then((brand)=>{
-        res.render('admin/adminEditProductPage',{admin:true,title:'EDIT PRODUCT PAGE',category,brand,product})
+        res.render('admin/adminEditProductPage',{admin:true,user:false, title:'EDIT PRODUCT PAGE',category,brand,product})
     })
     })
 }else{
-    res.render('admin/adminLogin',{admin:false})
+    res.render('admin/adminLogin',{admin:false,user:false})
 }
 }
 
@@ -66,7 +66,7 @@ const addProductPage = (req,res)=>{
             res.redirect('/admin/adminProductPage')
         })
     }else{
-        res.render('admin/adminLogin',{admin:false})
+        res.render('admin/adminLogin',{admin:false,user:false})
     }
 }
 
@@ -78,7 +78,7 @@ const deleteProduct = (req,res)=>{
         res.redirect('/admin/adminProductPage')
     })
 }else{
-    res.render('admin/adminLogin',{admin:false})
+    res.render('admin/adminLogin',{admin:false,user:false})
 }
 }
 
@@ -91,11 +91,11 @@ const editProductAction = (req,res)=>{
     Product.editProduct(id, newProductData, newImageId).then(()=>{
         Product.showProduct().then((product)=>{
             
-            res.render("admin/adminProductPage",{admin:true,title:'PRODUCT CONTROL PAGE',product})
+            res.render("admin/adminProductPage",{admin:true,user:false, title:'PRODUCT CONTROL PAGE',product})
         })
     })
 }else{
-    res.render('admin/adminLogin',{admin:false})
+    res.render('admin/adminLogin',{admin:false,user:false})
 }
 }
 

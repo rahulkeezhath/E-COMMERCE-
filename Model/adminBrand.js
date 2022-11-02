@@ -1,3 +1,4 @@
+const { response } = require('express')
 const { ObjectId } = require('mongodb')
 const collection = require('../config/collection')
 const db = require('../config/connection')
@@ -17,6 +18,27 @@ module.exports={
             resolve(brand)
         })
     },
+
+    getBrand:(brandId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.ADD_BRAND).findOne({_id: ObjectId(brandId)}).then((data)=>{
+                resolve(data)
+            })
+        })
+    },
+
+    editBrand:(brandId, brandNewData)=>{
+        return new Promise(async(resolve,reject)=>{
+            await db.get().collection(collection.ADD_BRAND).updateOne({_id:ObjectId(brandId)},{
+                $set:{
+                    brand: brandNewData
+                }
+            }).then((response)=>{
+                resolve()
+            })
+        })
+    },
+
     deleteBrand:(brandId)=>{
         return new Promise(async(resolve,reject)=>{
             await db.get().collection(collection.ADD_BRAND).deleteOne({_id:ObjectId(brandId)}).then((response)=>{
