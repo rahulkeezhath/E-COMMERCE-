@@ -1,7 +1,7 @@
 const { response } = require('express')
-const Product = require('../Model/adminProduct')
-const category = require('../Model/adminCategory')
-const brand = require('../Model/adminBrand')
+const Product = require('../../Model/adminProduct')
+const category = require('../../Model/adminCategory')
+const brand = require('../../Model/adminBrand')
 const e = require('express')
 
 
@@ -48,20 +48,26 @@ const addProductPage = (req,res)=>{
     if(req.session.admin){
        const{
         productName,
+        actualPrice,
         sellingPrice,
         category,
         brand,
         quantity,
         productDescription,
+        featuredProducts,
+        recentProducts
        }= req.body
         Product.doProduct({
             Picture: req.file.filename,
             productName,
+            actualPrice,
             sellingPrice,
             category,
             brand,
             quantity,
-            productDescription
+            productDescription,
+            recentProducts,
+            featuredProducts
         }).then((response)=>{
             res.redirect('/admin/adminProductPage')
         })

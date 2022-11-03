@@ -1,6 +1,6 @@
 const { response } = require('express')
-const brand = require('../Model/adminBrand')
-const category = require('../Model/adminCategory')
+const brand = require('../../Model/adminBrand')
+const category = require('../../Model/adminCategory')
 
 const adminBrandAction = (req,res)=>{
     if(req.session.admin){

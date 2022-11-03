@@ -1,8 +1,10 @@
 const e = require('express')
 const { response } = require('express')
 const { ReturnDocument } = require('mongodb')
-const userLogin = require('../Model/userLogin')
+const userLogin = require('../../Model/userLogin')
 const nodemailer = require('nodemailer')
+const userFrontDisplay = require('../../Model/userFrontDisplay')
+const categoryDisplay = require('../../Model/adminCategory')
 
 
 let mailTransporter = nodemailer.createTransport({
@@ -17,14 +19,20 @@ const OTP = `${Math.floor(1000+ Math.random() * 9000 )}`;
 
 
 const userLoginPage = (req,res)=>{
-    res.render('user/userHome',{admin:false,user:true})
+    userFrontDisplay.displayProducts().then((product)=>{
+        categoryDisplay.showCategory().then((category)=>{
+        res.render('user/userHomeLanding',{admin:false,user:true,product,category})
+    }) 
+})
 }
 
 
 const userLoginControl = (req,res)=>{
     userLogin.doLogin(req.body).then((response)=>{
         if(response.status){
-        res.render('user/userHomeLanding',{admin:false,user:false})
+            userFrontDisplay.displayProducts().then((product)=>{
+        res.render('user/userHome',{admin:false,user:false,product})
+    }) 
     }else{
         res.redirect('/login')
     }
@@ -73,7 +81,7 @@ const verifyOtp = (req,res)=>{
     if(OTP == req.body.Otp){
         userLogin.userVerified(userID).then((response)=>{
             console.log('Success');
-            res.render('user/userHomeLanding',{admin:false,user:false})
+            res.render('user/userHome',{admin:false,user:false})
         })
        
     }else{
@@ -83,7 +91,9 @@ const verifyOtp = (req,res)=>{
 
 
 const userSignoutAction = (req,res)=>{
-    res.render('user/userHome',{admin:false,user:true})
+    userFrontDisplay.displayProducts().then((product)=>{
+    res.render('user/userHomeLanding',{admin:false,user:true,product})
+}) 
 }
 
 module.exports={

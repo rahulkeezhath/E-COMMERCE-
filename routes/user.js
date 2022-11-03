@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const user = require('../Controllers/userLoginController')
+const user = require('../Controllers/user/userLoginController')
 
 router.get('/',user.userLoginPage)
 router.post('/userLoginAction',user.userLoginPage)

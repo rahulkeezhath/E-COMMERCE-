@@ -1,5 +1,5 @@
 const { response } = require('express')
-const adminLogin = require('../Model/adminLogin')
+const adminLogin = require('../../Model/adminLogin')
 
 const adminLoginPage = (req,res)=>{
     if(req.session.admin){

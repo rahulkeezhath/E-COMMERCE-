@@ -1,4 +1,4 @@
-const adminUser = require('../Model/adminUser')
+const adminUser = require('../../Model/adminUser')
 
 const adminUserPage = (req,res)=>{
     if(req.session.admin) {

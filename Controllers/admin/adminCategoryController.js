@@ -1,5 +1,5 @@
 const { response } = require('express')
-const adminCategory = require('../Model/adminCategory')
+const adminCategory = require('../../Model/adminCategory')
 
 
 
