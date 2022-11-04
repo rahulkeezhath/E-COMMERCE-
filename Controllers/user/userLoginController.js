@@ -5,6 +5,7 @@ const userLogin = require('../../Model/userLogin')
 const nodemailer = require('nodemailer')
 const userFrontDisplay = require('../../Model/userFrontDisplay')
 const categoryDisplay = require('../../Model/adminCategory')
+const bannerDisplay = require('../../Model/adminBanner')
 
 
 let mailTransporter = nodemailer.createTransport({
@@ -18,11 +19,13 @@ let mailTransporter = nodemailer.createTransport({
 const OTP = `${Math.floor(1000+ Math.random() * 9000 )}`;
 
 
-const userLoginPage = (req,res)=>{
+const userLoginPage = (req,res)=>{  
+    bannerDisplay.showBanner().then((banner)=>{
     userFrontDisplay.displayProducts().then((product)=>{
         categoryDisplay.showCategory().then((category)=>{
-        res.render('user/userHomeLanding',{admin:false,user:true,product,category})
+        res.render('user/userHomeLanding',{admin:false,user:true,product,category,banner})
     }) 
+})
 })
 }
 

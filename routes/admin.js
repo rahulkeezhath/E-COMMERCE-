@@ -5,6 +5,7 @@ const addCategory = require('../Controllers/admin/adminCategoryController')
 const addBrand = require('../Controllers/admin/adminBrandController')
 const addProduct = require('../Controllers/admin/adminProductController')
 const adminUser = require('../Controllers/admin/adminUserController')
+const adminBanner = require('../Controllers/admin/adminBannerController')
 const multer = require('multer')
 const { route } = require('./user')
 
@@ -74,6 +75,12 @@ router.post('/addNewProduct',upload.single('productImage'),addProduct.addProduct
 router.get('/editProduct',addProduct.editProduct)
 router.post('/editProductAction',upload.single('productImage'),addProduct.editProductAction)
 router.get('/deleteProduct',addProduct.deleteProduct)
+
+
+// Banner router
+router.get('/adminBannerPage',adminBanner.adminBannerPage)
+router.post('/addBanner',upload.single('productImage'), adminBanner.addBannerPage)
+router.delete('/deleteBanner',adminBanner.deleteBanner)
 
 // Order router
 
