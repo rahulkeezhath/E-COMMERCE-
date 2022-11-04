@@ -1,5 +1,6 @@
 const userCheckout = (req,res)=>{
-  res.render('user/checkout',{admin:false,user:true})
+  let userData = req.session.user
+  res.render('user/checkout',{admin:false,user:true,userData})
 }
 
 module.exports = {

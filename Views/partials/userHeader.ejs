@@ -70,8 +70,24 @@
 	          <!-- <li class="nav-item"><a href="#" class="nav-link">Blog</a></li> -->
 	          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
 	          <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
-              <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>     
-              <li class="nav-item"><a href="/signup" class="nav-link">Register</a></li>       
+            <% if(userData) { %>
+              <div class="dropdown mt-3 m-2">
+                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><%= userData.name %>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+              </div>
+              <% } else { %>
+                <div class="dropdown mt-3 m-2">
+                  <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Account
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/login">Login</a></li>
+                    <li><a class="dropdown-item" href="/signup">Register</a></li>
+                  </ul>
+                </div>
+                <% } %>
 	        </ul>
 	      </div>
 	    </div>
@@ -94,3 +110,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="../user/js/google-map.js"></script>
     <script src="../user/js/main.js"></script>
+
+
+ 

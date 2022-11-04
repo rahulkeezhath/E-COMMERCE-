@@ -1,5 +1,6 @@
 const userCart = (req,res)=>{
-    res.render('user/cart',{admin:false,user:true})
+    let userData = req.session.user
+    res.render('user/cart',{admin:false,user:true,userData})
 }
 
 module.exports = {
