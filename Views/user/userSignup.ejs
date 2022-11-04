@@ -7,164 +7,95 @@
   <meta name="description" content=""/>
   <meta name="author" content=""/>
   <title>Foody</title>
-  <!-- loader-->
-  <link href="../user/css/pace.min.css" rel="stylesheet"/>
-  <script src="../user/js/pace.min.js"></script>
-  <!--favicon-->
-  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-  <!-- Bootstrap core CSS-->
-  <link href="../user/css/botstap.min.css" rel="stylesheet"/>
-  <!-- animate CSS-->
-  <link href="../user/css/animat.css" rel="stylesheet" type="text/css"/>
-  <!-- Icons CSS-->
-  <link href="../user/css/icons.css" rel="stylesheet" type="text/css"/>
-  <!-- Custom Style-->
-  <link href="../user/css/app-style.css" rel="stylesheet"/>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../user/fonts/icomoons/style.css">
+
+  <link rel="stylesheet" href="../user/css/owl.carousel.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../user/css/bootstrap.css">
   
+  <!-- Style -->
+  <link rel="stylesheet" href="../user/css/loginstyle.css">
+
 </head>
 
-<body class="bg-theme bg-theme1">
 
-<!-- start loader -->
-   <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
-   <!-- end loader -->
-
-<!-- Start wrapper-->
- <div id="wrapper">
-
-	<div class="card card-authentication1 mx-auto my-4">
-		<div class="card-body">
-		 <div class="card-content p-2">
-		 	<div class="text-center">
-		 		<img src="../user/img/foody.jpeg" style="width: 30%; height:30%" alt="logo icon">
-		 	</div>
-		  <div class="card-title text-uppercase text-center py-3">Sign Up</div>
-		    <form action="/signup" method="post" onsubmit="return userSignupValidation()">
-			  <div class="form-group">
-			  <label for="exampleInputName" class="sr-only">Name</label>
-			   <div class="position-relative has-icon-right">
-				  <input type="text" name="name"  id="name" class="form-control input-shadow" placeholder="Enter Your Name">
-				  <div class="form-control-position">
-					  <i class="icon-user"></i>
+ <body>
+	<div class="d-md-flex half">
+		<div class="bg" style="background-image: url('../user/img/bcksignup.jpg'); width: 80%; height:100%;"></div>
+		<div class="contents">
+	
+		  <div class="container">
+			<div class="row align-items-center justify-content-center">
+			  <div class="col-md-12">
+				<div class="form-block mx-auto">
+				  <div class="text-center mb-5">
+					<h3 class="text-uppercase"><strong> <span class="text-success">F</span><span class="text-warning">oo</span><span class="text-success">dy</span></strong></h3>
 				  </div>
-			   </div>
-			  </div>
-			  <span class="text-danger" id="nameError"></span><br>
-			  <div class="form-group">
-			  <label for="exampleInputEmailId" class="sr-only">Email ID</label>
-			   <div class="position-relative has-icon-right">
-				  <input type="email" name="email" id="email" class="form-control input-shadow" placeholder="Enter Your Email ID">
-				  <div class="form-control-position">
-					  <i class="icon-envelope-open"></i>
-				  </div>
-			   </div>
-			  </div>
-			  <span class="text-danger" id="emailError"></span><br>
-			  <div class="form-group">
-				<label for="exampleInputName" class="sr-only">Phone Number</label>
-				 <div class="position-relative has-icon-right">
-					<input type="number" name="phoneNumber" id="phoneNumber" class="form-control input-shadow" placeholder="Enter Your Phone Number">
-					<div class="form-control-position">
-						<i class="icon-user"></i>
+				  <form action="/signup" method="post" onsubmit="return userSignupValidation()">
+					<div class="form-group first">
+						<label for="username">Name</label>
+						<input type="text" class="form-control" placeholder="Enter Name" name="name" id="name">
+					  </div>
+					  <span class="text-danger" id="nameError"></span>
+
+					<div class="form-group first">
+					  <label for="username">Email</label>
+					  <input type="text" class="form-control" placeholder="Enter Email" name="email" id="email">
 					</div>
-				 </div>
+					<span id="emailError" class="text-danger"></span>
+
+					<div class="form-group last mb-3">
+						<label for="password">Phone Number</label>
+						<input type="number" class="form-control" placeholder="Enter Your Phone Number" name="phoneNumber" id="phoneNumber">
+					  </div>
+					  <span  id="phoneNumberError" class="text-danger"></span>
+
+					<div class="form-group last mb-3">
+					  <label for="password">Password</label>
+					  <input type="password" class="form-control" placeholder="Enter Password" name="password" id="pass">
+					</div>
+					<span id="passwordError" class="text-danger"></span>
+
+					<div class="form-group last mb-3">
+						<label for="password">Confirm Password</label>
+						<input type="password" class="form-control" placeholder="Enter Password" id="confirmPass">
+					  </div>
+					  <span id="confirmPasswordError" class="text-danger"></span>
+
+					<input type="submit" value="Signup" class="btn btn-block py-2 btn-success">
+	
+					<span class="text-center my-3 d-block">or</span>
+					
+					
+					<div class="">
+					<a href="/login" class="btn btn-block py-2 btn-facebook">
+					  <span></span> Login
+					</a>
+					
+					</div>
+				  </form>
 				</div>
-				<span class="text-danger" id="phoneNumberError"></span><br>
-			  <div class="form-group">
-			   <label for="exampleInputPassword" class="sr-only">Password</label>
-			   <div class="position-relative has-icon-right">
-				  <input type="password" name="password" id="pass" class="form-control input-shadow" placeholder="Choose Password">
-				  <div class="form-control-position">
-					  <i class="icon-lock"></i>
-				  </div>
-			   </div>
 			  </div>
-			  <span class="text-danger" id="passwordError"></span><br>
-			  <div class="form-group">
-				<label for="exampleInputPassword" class="sr-only">Confirm Password</label>
-				<div class="position-relative has-icon-right">
-				   <input type="password"  id="confirmPass" class="form-control input-shadow" placeholder="Confirm Password">
-				   <div class="form-control-position">
-					   <i class="icon-lock"></i>
-				   </div>
-				</div>
-			   </div>
-			   <span class="text-danger" id="confirmPasswordError"></span><br>
-			   <div class="form-group">
-			     <div class="icheck-material-white">
-                   <input type="checkbox" id="user-checkbox" checked="" />
-                   <label for="user-checkbox">I Agree With Terms & Conditions</label>
-			     </div>
-			    </div>
-		   </div>
+			</div>
 		  </div>
-
-		  <button type="submit" class="btn btn-light btn-block waves-effect waves-light">Sign Up</button>
-		</form>
-		  
-
-		  <div class="card-footer text-center py-3">
-		    <p class="text-warning mb-0">Already have an account? <a href="/login"> Sign In here</a></p>
-		  </div>
-	     </div>
-    
-     <!--Start Back To Top Button-->
-    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-    <!--End Back To Top Button-->
+		</div>
 	
-	<!--start color switcher-->
-   <div class="right-sidebar">
-    <div class="switcher-icon">
-      <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
-    </div>
-    <div class="right-sidebar-content">
-
-      <p class="mb-0">Gaussion Texture</p>
-      <hr>
-      
-      <ul class="switcher">
-        <li id="theme1"></li>
-        <li id="theme2"></li>
-        <li id="theme3"></li>
-        <li id="theme4"></li>
-        <li id="theme5"></li>
-        <li id="theme6"></li>
-      </ul>
-
-      <p class="mb-0">Gradient Background</p>
-      <hr>
-      
-      <ul class="switcher">
-        <li id="theme7"></li>
-        <li id="theme8"></li>
-        <li id="theme9"></li>
-        <li id="theme10"></li>
-        <li id="theme11"></li>
-        <li id="theme12"></li>
-		<li id="theme13"></li>
-        <li id="theme14"></li>
-        <li id="theme15"></li>
-      </ul>
-      
-     </div>
-   </div>
-  <!--end color switcher-->
+		
+	  </div>
 	
-	</div><!--wrapper-->
-	
-  <!-- Bootstrap core JavaScript-->
-  <script src="../user/js/jquery.min.js"></script>
-  <script src="../user/js/poper.min.js"></script>
-  <script src="../user/js/bootstap.min.js"></script>
-	
-  <!-- sidebar-menu js -->
-  <script src="../user/js/sidebar-menu.js"></script>
-  
-  <!-- Custom scripts -->
-  <script src="../user/js/app-script.js"></script>
-  
+   
 </body>
 </html>
+
+	<script src="../user/js/jquery-3.3.1.min.js"></script>
+    <script src="../user/js/popper.js"></script>
+    <script src="../user/js/bootstrap.js"></script>
+    <script src="../user/js/loginmain.js"></script>
+
 
 
 <script>
