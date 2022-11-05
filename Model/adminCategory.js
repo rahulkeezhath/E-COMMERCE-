@@ -4,11 +4,11 @@ const collection = require('../config/collection')
 const db = require('../config/connection')
 
 module.exports={
-    doCategory:(addCategory)=>{
+    doCategory:(imageID,addCategory)=>{
         return new Promise(async(resolve,reject)=>{
             console.log(addCategory)
-            db.get().collection(collection.ADD_CATEGORY).insertOne(addCategory).then((data)=>{
-                resolve(data)
+            db.get().collection(collection.ADD_CATEGORY).insertOne(imageID,addCategory).then((data)=>{
+                resolve.apply(data)
             })
         })
     },

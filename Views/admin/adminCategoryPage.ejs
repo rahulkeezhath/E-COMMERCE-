@@ -6,7 +6,7 @@
 </button>
 </div>
 
-<form action="/admin/addCategory" method="post" onsubmit="return categoryValidation()">
+<form action="/admin/addCategory" method="post" enctype="multipart/form-data"  onsubmit="return categoryValidation()">
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -17,7 +17,9 @@
       </div>
       <div class="modal-body">
         <label for="addCategory">Add Category</label>
-        <input type="text" name="newCategory" id="newCategory">
+        <input type="text" name="newCategory" id="newCategory"><br><br>
+        <label for="addCategory">Category Image</label>
+        <input  name="categoryImage" type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
       </div>
       <span class="text-danger text-center" id="categoryError"></span>
       <div class="modal-footer">
@@ -37,6 +39,7 @@
         <tr>
           <th scope="col">S.NO</th>
           <th scope="col">Category Name</th>
+          <th scope="col">Category Image</th>
           <th scope="col">Delete Category</th>
         </tr>
       </thead>
@@ -45,6 +48,7 @@
         <tr>
           <th scope="row"><%= i+1 %></th>
           <td><%= category[i].newCategory %></td>
+          <td> <img src="/admin/images/<%= category[i].categoryImage %>" style="width: 75px; height: 75px;" alt=""></td>
           <td><a class="btn btn-primary" href="/admin/deleteCategory?id=<%= category[i]._id%>" onclick="return confirm('Are you want to delete <%= category[i].newCategory %>')">Delete</a></td>
         </tr>
        <% } %>

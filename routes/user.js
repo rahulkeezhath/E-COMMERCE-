@@ -3,6 +3,7 @@ const router = express.Router()
 const user = require('../Controllers/user/userLoginController')
 const userCart = require('../Controllers/user/userCart')
 const userProduct = require('../Controllers/user/userProductDisplay')
+const userShop = require('../Controllers/user/userShop')
 const userWishlist = require('../Controllers/user/userWhislist')
 const userCheckout = require('../Controllers/user/userCheckout')
 
@@ -21,6 +22,8 @@ router.post('/verifyOtp',user.verifyOtp)
 router.get('/cart',userCart.userCart)
 
 router.get('/viewSingleProduct',userProduct.showProductDetails)
+
+router.get('/viewCategory',userShop.viewShop)
 
 router.get('/wishlist',userWishlist.userWishlist)
 

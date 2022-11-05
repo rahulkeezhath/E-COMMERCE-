@@ -55,7 +55,7 @@ router.get('/adminUserPage',adminUser.adminUserPage)
 //Category router
 
 router.get('/adminCategoryPage',addCategory.adminCategoryAction)
-router.post('/addCategory',addCategory.addNewCategory)
+router.post('/addCategory',upload.single('categoryImage'),addCategory.addNewCategory)
 router.get('/deleteCategory',addCategory.deleteCategory)
 
 

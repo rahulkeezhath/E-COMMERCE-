@@ -4,5 +4,6 @@ module.exports={
     ADD_BRAND:'add_brand',
     ADD_PRODUCT:'add_product',
     ADD_BANNER:'add_banner',
-    USER_CREDENTIALS:'user_credentials'
+    USER_CREDENTIALS:'user_credentials',
+    ADD_CART:'add_cart'
 }

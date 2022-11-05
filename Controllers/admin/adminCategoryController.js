@@ -2,8 +2,6 @@ const { response } = require('express')
 const adminCategory = require('../../Model/adminCategory')
 
 
-
-
 const adminCategoryAction = (req,res)=>{  
     if(req.session.admin){
     adminCategory.showCategory().then((category)=>{
@@ -16,7 +14,12 @@ const adminCategoryAction = (req,res)=>{
 
 const addNewCategory = (req,res)=>{
     if(req.session.admin){
-    adminCategory.doCategory(req.body).then((response)=>{
+        const{
+            newCategory,
+        }=req.body
+    adminCategory.doCategory({categoryImage:req.file.filename,
+        newCategory,
+    }).then((response)=>{
         res.redirect('/admin/adminCategoryPage') 
     })
 }else{
