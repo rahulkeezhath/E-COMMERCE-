@@ -8,6 +8,7 @@ const adminUser = require('../Controllers/admin/adminUserController')
 const adminBanner = require('../Controllers/admin/adminBannerController')
 const multer = require('multer')
 const { route } = require('./user')
+const  adminSessionCheck  = require('../Middlewares/sessionMiddleware')
 
 
 //Multer Start
@@ -41,46 +42,46 @@ fileFilter:(req,file,cb)=>{
 
 //Admin router
 
-router.get('/',admin.adminLoginPage)
+router.get('/',adminSessionCheck.adminSessionChecker,admin.adminLoginPage)
 router.post('/adminLoginAction',admin.adminLoginAction)
-router.get('/adminHome',admin.adminHome)  
+router.get('/adminHome',adminSessionCheck.adminSessionChecker,admin.adminHome)  
 router.get('/adminLogout',admin.adminLogout) 
 
 
 //User Router
 
-router.get('/adminUserPage',adminUser.adminUserPage)
+router.get('/adminUserPage',adminSessionCheck.adminSessionChecker,adminUser.adminUserPage)
 
 
 //Category router
 
-router.get('/adminCategoryPage',addCategory.adminCategoryAction)
-router.post('/addCategory',upload.single('categoryImage'),addCategory.addNewCategory)
-router.get('/deleteCategory',addCategory.deleteCategory)
+router.get('/adminCategoryPage',adminSessionCheck.adminSessionChecker,addCategory.adminCategoryAction)
+router.post('/addCategory',adminSessionCheck.adminSessionChecker,upload.single('categoryImage'),addCategory.addNewCategory)
+router.get('/deleteCategory',adminSessionCheck.adminSessionChecker,addCategory.deleteCategory)
 
 
 // Brand router
 
-router.get('/adminBrandPage',addBrand.adminBrandAction)
-router.post('/addBrand',addBrand.addNewBrand)
-router.get('/editBrand',addBrand.getBrand)
-router.post('/editBrand',addBrand.editBrandAction)
-router.get('/deleteBrand',addBrand.deleteBrand)
+router.get('/adminBrandPage',adminSessionCheck.adminSessionChecker,addBrand.adminBrandAction)
+router.post('/addBrand',adminSessionCheck.adminSessionChecker,addBrand.addNewBrand)
+router.get('/editBrand',adminSessionCheck.adminSessionChecker,addBrand.getBrand)
+router.post('/editBrand',adminSessionCheck.adminSessionChecker,addBrand.editBrandAction)
+router.get('/deleteBrand',adminSessionCheck.adminSessionChecker,addBrand.deleteBrand)
 
 // Product router
 
-router.get('/adminProductPage',addProduct.adminProductAction)
-router.get('/addProducts',addProduct.addNewProduct)
-router.post('/addNewProduct',upload.single('productImage'),addProduct.addProductPage)
-router.get('/editProduct',addProduct.editProduct)
-router.post('/editProductAction',upload.single('productImage'),addProduct.editProductAction)
-router.get('/deleteProduct',addProduct.deleteProduct)
+router.get('/adminProductPage',adminSessionCheck.adminSessionChecker,addProduct.adminProductAction)
+router.get('/addProducts',adminSessionCheck.adminSessionChecker,addProduct.addNewProduct)
+router.post('/addNewProduct',adminSessionCheck.adminSessionChecker,upload.single('productImage'),addProduct.addProductPage)
+router.get('/editProduct',adminSessionCheck.adminSessionChecker,addProduct.editProduct)
+router.post('/editProductAction',adminSessionCheck.adminSessionChecker,upload.single('productImage'),addProduct.editProductAction)
+router.get('/deleteProduct',adminSessionCheck.adminSessionChecker,addProduct.deleteProduct)
 
 
 // Banner router
-router.get('/adminBannerPage',adminBanner.adminBannerPage)
-router.post('/addBanner',upload.single('productImage'), adminBanner.addBannerPage)
-router.delete('/deleteBanner',adminBanner.deleteBanner)
+router.get('/adminBannerPage',adminSessionCheck.adminSessionChecker,adminBanner.adminBannerPage)
+router.post('/addBanner',adminSessionCheck.adminSessionChecker,upload.single('productImage'), adminBanner.addBannerPage)
+router.delete('/deleteBanner',adminSessionCheck.adminSessionChecker,adminBanner.deleteBanner)
 
 // Order router
 

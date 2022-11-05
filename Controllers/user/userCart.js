@@ -1,4 +1,4 @@
-const userCart = (req,res)=>{
+const   userCart = (req,res)=>{
     let userData = req.session.user
     res.render('user/cart',{admin:false,user:true,userData})
 }

@@ -2,12 +2,10 @@ const { response } = require('express')
 const adminLogin = require('../../Model/adminLogin')
 
 const adminLoginPage = (req,res)=>{
-    if(req.session.admin){
+  
     res.render('admin/adminHome',{admin:true,user:false, title:'ADMIN HOME PAGE'})
-}else{
-    res.render('admin/adminLogin',{admin:false,user:false})
 }
-}
+
 const adminLoginAction = (req,res)=>{
     console.log(req.body);
     adminLogin.doLogin(req.body).then((response)=>{
@@ -22,11 +20,7 @@ const adminLoginAction = (req,res)=>{
 }
 
 const adminHome = (req,res)=>{
-    if(req.session.admin){
     res.render('admin/adminHome',{admin:true,user:false, title:'DASHBOARD'})
-}else{
-    res.render('admin/adminLogin',{admin:false,user:false})
-}
 }
 
 const adminLogout = (req,res)=>{

@@ -6,31 +6,21 @@ const e = require('express')
 
 
 const adminProductAction = (req,res)=>{
-    if(req.session.admin){
     Product.showProduct().then((product)=>{
         res.render('admin/adminProductPage',{admin:true,user:false, title:'PRODUCTS CONTROL PAGE',product})
     })
-}else{
-    res.render('admin/adminLogin',{admin:false,user:false})
-}
 }
 
 const addNewProduct = (req,res)=>{
-    if(req.session.admin){
         category.showCategory().then((category)=>{
             brand.showBrand().then((brand)=>{
                 res.render('admin/adminAddProductPage',{admin:true, user:false, title:'ADD PRODUCT PAGE',category,brand})
         
             })
         })
-    }else{
-        res.render('admin/adminLogin',{admin:false,user:false})
     }
-          
-}
 
 const editProduct = async(req,res)=>{
-    if(req.session.admin){
     let productId = req.query.id
     let product = await Product.getProductDetails(productId)
     category.showCategory().then((category)=>{
@@ -38,14 +28,10 @@ const editProduct = async(req,res)=>{
         res.render('admin/adminEditProductPage',{admin:true,user:false, title:'EDIT PRODUCT PAGE',category,brand,product})
     })
     })
-}else{
-    res.render('admin/adminLogin',{admin:false,user:false})
-}
 }
 
 
 const addProductPage = (req,res)=>{
-    if(req.session.admin){
        const{
         productName,
         actualPrice,
@@ -71,26 +57,18 @@ const addProductPage = (req,res)=>{
         }).then((response)=>{
             res.redirect('/admin/adminProductPage')
         })
-    }else{
-        res.render('admin/adminLogin',{admin:false,user:false})
     }
-}
 
 
 const deleteProduct = (req,res)=>{
-    if(req.session.admin){
     let productId = req.query.id
     Product.deleteProduct(productId).then((response)=>{
         res.redirect('/admin/adminProductPage')
     })
-}else{
-    res.render('admin/adminLogin',{admin:false,user:false})
-}
 }
 
 
 const editProductAction = (req,res)=>{
-    if(req.session.admin){
     let id = req.body.id
     let newProductData= req.body
     let newImageId = req.file.filename
@@ -100,10 +78,8 @@ const editProductAction = (req,res)=>{
             res.render("admin/adminProductPage",{admin:true,user:false, title:'PRODUCT CONTROL PAGE',product})
         })
     })
-}else{
-    res.render('admin/adminLogin',{admin:false,user:false})
 }
-}
+
 
 module.exports={
     adminProductAction,
