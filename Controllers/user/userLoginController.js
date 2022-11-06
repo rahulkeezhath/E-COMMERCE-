@@ -6,13 +6,14 @@ const nodemailer = require('nodemailer')
 const userFrontDisplay = require('../../Model/userFrontDisplay')
 const categoryDisplay = require('../../Model/adminCategory')
 const bannerDisplay = require('../../Model/adminBanner')
+require('dotenv').config()
 
 
 let mailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'rahulkeezhath@gmail.com',
-        pass: 'dqpokhvqyfryntha'
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
     }
 })
  
@@ -63,7 +64,7 @@ const userSignupAction = (req,res)=>{
 
     const{name,email,phoneNumber,password} = req.body
         let mailDetails = {
-            from: 'rahulkeezhath@gmail.com',
+            from: process.env.EMAIL,
             to: email,
             subject: 'FOODY REGISTRATION',
             html: `<p> YOUR OTP FOR REGISTRATION IN FOODY IS ${OTP}</p>`
