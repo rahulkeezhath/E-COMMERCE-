@@ -47,12 +47,14 @@ module.exports={
     },
 
     userVerified:(userID)=>{
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.USER_CREDENTIALS).updateOne({_id:userID},{
+        return new Promise(async(resolve,reject)=>{
+            let user = await db.get().collection(collection.USER_CREDENTIALS).findOne({_id:userID})
+            await db.get().collection(collection.USER_CREDENTIALS).updateOne({_id:userID},{
                 $set:{
                     verified: 1
                 }
             }).then((response)=>{
+                response.user = user
                 resolve(response)
             })
         })

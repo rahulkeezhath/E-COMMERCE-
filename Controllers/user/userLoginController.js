@@ -18,7 +18,6 @@ let mailTransporter = nodemailer.createTransport({
  
 const OTP = `${Math.floor(1000+ Math.random() * 9000 )}`;
 
-
 const userLoginPage = (req,res)=>{  
     let userData = req.session.user
     bannerDisplay.showBanner().then((banner)=>{
@@ -32,17 +31,17 @@ const userLoginPage = (req,res)=>{
 
 
 const userLoginControl = (req,res)=>{
-    let userData = req.session.user
+    // let userData = req.session.user
     userLogin.doLogin(req.body).then((response)=>{
         if(response.status){
             req.session.loggedIn=true
             req.session.user= response.user
-            bannerDisplay.showBanner().then((banner)=>{
-            userFrontDisplay.displayProducts().then((product)=>{
+            // bannerDisplay.showBanner().then((banner)=>{
+            // userFrontDisplay.displayProducts().then((product)=>{
                 res.redirect('/')
         // res.render('user/userHomeLanding',{admin:false,user:true,product,banner})
-            })
-    }) 
+    //         })
+    // }) 
     }else{
         res.redirect('/login')
     }
@@ -60,7 +59,6 @@ const userSignupPage = (req,res)=>{
 }
 
 const userSignupAction = (req,res)=>{
-    console.log(req.body);
     let verified = 0
 
     const{name,email,phoneNumber,password} = req.body
@@ -81,7 +79,7 @@ const userSignupAction = (req,res)=>{
     
     userLogin.doSignup(verified,name,email,phoneNumber,password).then((response)=>{
         userID = response.insertedId
-    console.log(response);
+        console.log(OTP);
         res.render('user/otpVerification',{admin:false,user:false})
     })
     
@@ -89,14 +87,18 @@ const userSignupAction = (req,res)=>{
 
 const verifyOtp = (req,res)=>{
     if(OTP == req.body.Otp){
-        let userData = req.session.user
-        userFrontDisplay.displayProducts().then((product)=>{
-        bannerDisplay.showBanner().then((banner)=>{
+        req.session.loggedIn = true
         userLogin.userVerified(userID).then((response)=>{
             console.log('Success');
-            res.render('user/userHomeLanding',{admin:false,user:true,banner,product,userData})
+        userFrontDisplay.displayProducts().then((product)=>{
+        bannerDisplay.showBanner().then((banner)=>{
+            categoryDisplay.showCategory().then((category)=>{
+                req.session.user = response.user
+                let userData = req.session.user
+            res.render('user/userHomeLanding',{admin:false,user:true,banner,product,userData,category})
         })
     })
+})
 })
        
     }else{

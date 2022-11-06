@@ -6,6 +6,7 @@ const userProduct = require('../Controllers/user/userProductDisplay')
 const userShop = require('../Controllers/user/userShop')
 const userWishlist = require('../Controllers/user/userWhislist')
 const userCheckout = require('../Controllers/user/userCheckout')
+const userSessionCheck = require('../Middlewares/sessionMiddleware')
 
 
 router.get('/',user.userLoginPage)
@@ -19,14 +20,14 @@ router.get('/logout',user.userSignoutAction)
 router.post('/verifyOtp',user.verifyOtp)
 
 
-router.get('/cart',userCart.userCart)
+router.get('/cart',userSessionCheck.userSessionChecker,userCart.userCart)
 
 router.get('/viewSingleProduct',userProduct.showProductDetails)
 
 router.get('/viewCategory',userShop.viewShop)
 
-router.get('/wishlist',userWishlist.userWishlist)
+router.get('/wishlist',userSessionCheck.userSessionChecker,userWishlist.userWishlist)
 
-router.get('/checkout',userCheckout.userCheckout)
+router.get('/checkout',userSessionCheck.userSessionChecker,userCheckout.userCheckout)
 
 module.exports=router
