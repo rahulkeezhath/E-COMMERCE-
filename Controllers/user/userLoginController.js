@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer')
 const userFrontDisplay = require('../../Model/userFrontDisplay')
 const categoryDisplay = require('../../Model/adminCategory')
 const bannerDisplay = require('../../Model/adminBanner')
+const userCartMgmt = require('../../Model/userCartMgmt')
 require('dotenv').config()
 
 
@@ -19,16 +20,21 @@ let mailTransporter = nodemailer.createTransport({
  
 const OTP = `${Math.floor(1000+ Math.random() * 9000 )}`;
 
-const userLoginPage = (req,res)=>{  
+const userLoginPage = async(req,res)=>{  
     let userData = req.session.user
+    let cartCount = null
+    if(req.session.user){
+    cartCount = await userCartMgmt.getCartCount(req.session.user._id)
+    }
     bannerDisplay.showBanner().then((banner)=>{
     userFrontDisplay.displayProducts().then((product)=>{
         categoryDisplay.showCategory().then((category)=>{
-        res.render('user/userHomeLanding',{admin:false,user:true,userData,product,category,banner})
+        res.render('user/userHomeLanding',{admin:false,user:true,userData,product,category,banner,cartCount})
     }) 
 })
 })
 }
+
 
 
 const userLoginControl = (req,res)=>{
@@ -86,7 +92,11 @@ const userSignupAction = (req,res)=>{
     
 }
 
-const verifyOtp = (req,res)=>{
+const verifyOtp = async(req,res)=>{
+    let cartCount = null
+    if(req.session.user){
+    cartCount = await userCartMgmt.getCartCount(req.session.user._id)
+    }
     if(OTP == req.body.Otp){
         req.session.loggedIn = true
         userLogin.userVerified(userID).then((response)=>{

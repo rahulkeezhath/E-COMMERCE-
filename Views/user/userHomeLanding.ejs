@@ -166,6 +166,7 @@
 							<div style="background-image: url('/admin/images/<%= product[i].Picture %>'); width: 70rem; height: 10rem; background-size: contain; background-repeat: no-repeat;"></div>
 							<!-- <img class="img-fluid" style="width: 100%; height: 100%;" src="/admin/images/<%= product[i].Picture %>" alt="img not found"> -->
     						<span class="status">30%</span>
+						
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
@@ -180,9 +181,10 @@
 	    							<a href="viewSingleProduct?id=<%= product[i]._id %>" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="/cart" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
+	    							<!-- <a href="" class="buy-now d-flex justify-content-center align-items-center mx-1"> -->
+										<button onclick="addToCart('<%= product[i]._id %>')" class="btn btn-success"><span><i class="ion-ios-cart"></i></span></button>
+	    								<!-- <span></span>  -->
+	    							<!-- </a> -->
 	    							<a href="/wishlist" class="heart d-flex justify-content-center align-items-center ">
 	    								<span><i class="ion-ios-heart"></i></span>
 	    							</a>
@@ -239,4 +241,6 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../user/js/google-map.js"></script>
   <script src="../user/js/main.js"></script>
-    
+  <script src="../user/js/script.js"></script>
+
+ 

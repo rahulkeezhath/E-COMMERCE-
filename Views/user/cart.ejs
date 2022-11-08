@@ -44,6 +44,7 @@
 						<thead class="thead-primary">
 						  <tr class="text-center">
 							<th>&nbsp;</th>
+							<th>S.NO</th>
 							<th>&nbsp;</th>
 							<th>Product name</th>
 							<th>Price</th>
@@ -52,27 +53,30 @@
 						  </tr>
 						</thead>
 						<tbody>
+							<% let i=1; for(values of products) { %> 
 						  <tr class="text-center">
 							<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 							
-							<td class="image-prod"><div class="img" style="background-image:url(../user/img/product-3.jpg);"></div></td>
+							<td><%= i++ %></td>
+
+							<td class="image-prod"><div class="img" style="background-image:url('/admin/images/<%= values.products.Picture %>');"></div></td>
+							
 							
 							<td class="product-name">
-								<h3>Bell Pepper</h3>
-								<p>Far far away, behind the word mountains, far from the countries</p>
+								<h3><%= values.products.productName %></h3>
 							</td>
 							
-							<td class="price">$4.90</td>
+							<td class="price"><%= values.products.sellingPrice %></td>
 							
 							<td class="quantity">
 								<div class="input-group mb-3">
-								 <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+								<button class="quantity form-control input-number" onclick="changeQuantity('<%= values._id %>','<%= values.products._id %>',-1,'<%= userData._id %>')" >-</button> <button class="quantity form-control input-number" ><%= values.quantity %></button><button class="quantity form-control input-number" onclick="changeQuantity('<%= values._id %>','<%= values.products._id %>',1,'<%= userData._id %>')" >+</button>
 							  </div>
 						  </td>
 							
-							<td class="total">$4.90</td>
+							<td class="total"><%= values.products.sellingPrice %></td>
 						  </tr><!-- END TR-->
-
+<!-- 
 						  <tr class="text-center">
 							<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 							
@@ -92,7 +96,8 @@
 						  </td>
 							
 							<td class="total">$15.70</td>
-						  </tr><!-- END TR-->
+						  </tr>END TR -->
+						<% } %>
 						</tbody>
 					  </table>
 				  </div>
@@ -197,6 +202,23 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="../user/js/google-map.js"></script>
 <script src="../user/js/main.js"></script>
+
+<script>
+	function changeQuantity(cartId,productId,count){
+		$.ajax({
+			url:'/changeProductQuantity',
+			data:{
+				cart:cartId,
+				product:productId,
+				count:count
+			},
+			method:'post',
+			success:(response)=>{
+				alert(response)
+			}
+		})
+	}
+</script>
 
 <script>
 	  $(document).ready(function(){
