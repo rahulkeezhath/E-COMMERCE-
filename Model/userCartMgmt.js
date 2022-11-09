@@ -74,7 +74,7 @@ module.exports = {
             resolve(cartItems)
         })
     },
-    getCartCount:(userId)=>{
+    getCartCount:(userId)=>{ 
         return new Promise(async(resolve,reject)=>{
             let count =0
             const cart = await db.get().collection(collection.ADD_CART).findOne({user:ObjectId(userId)})
@@ -84,15 +84,15 @@ module.exports = {
             resolve(count)
         })
     },
-    changeQuantity:({details})=>{
+    changeQuantity:(details)=>{
         details.count = parseInt(details.count)
         return new Promise((resolve,reject)=>{
             db.get().collection(collection.ADD_CART).updateOne({_id:ObjectId(details.cart),'products.item':ObjectId(details.product)},
             {
                 $inc :{'products.$.quantity':details.count}
             }
-            ).then(()=>{
-                resolve()
+            ).then((response)=>{
+                resolve(true)
             })
         })
     }

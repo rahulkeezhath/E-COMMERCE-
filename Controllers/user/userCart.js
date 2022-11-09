@@ -1,3 +1,4 @@
+const { response } = require("express")
 const userCartMgmt = require("../../Model/userCartMgmt")
 
 const userCart = async(req,res)=>{
@@ -19,8 +20,8 @@ const addToCart = (req,res)=>{
 }
 
 const changeProductQuantity = (req,res,next)=>{
-    console.log(req.body)
-    userCartMgmt.changeQuantity(req.body).then(()=>{
+    userCartMgmt.changeQuantity(req.body).then((response)=>{
+        res.json(response)
     })
 }
 

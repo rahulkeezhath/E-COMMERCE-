@@ -69,7 +69,7 @@
 	          <li class="nav-item"><a href="#" class="nav-link">About</a></li>
 	          <!-- <li class="nav-item"><a href="#" class="nav-link">Blog</a></li> -->
 	          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-            <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span class="icon-shopping_cart" id="countCart"></span><%= cartCount %></a></li> 
+            <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span class="icon-shopping_cart" id="countCart"><%= cartCount %></span></a></li> 
             <% if(userData) { %>
               <div class="dropdown mt-3 m-2">
                 <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><%= userData.name %>

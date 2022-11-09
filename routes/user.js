@@ -22,7 +22,7 @@ router.post('/verifyOtp',user.verifyOtp)
 
 router.get('/cart',userSessionCheck.userSessionChecker,userCart.userCart)
 router.get('/addToCart/:id',userSessionCheck.userSessionChecker,userCart.addToCart)
-router.get('/changeProductQuantity',userSessionCheck.userSessionChecker,userCart.changeProductQuantity)
+router.post('/changeProductQuantity',userSessionCheck.userSessionChecker,userCart.changeProductQuantity)
 
 router.get('/viewSingleProduct',userProduct.showProductDetails)
 
