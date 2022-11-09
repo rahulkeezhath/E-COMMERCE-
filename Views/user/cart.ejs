@@ -55,7 +55,7 @@
 						<tbody>
 							<% let i=1; for(values of products) { %> 
 						  <tr class="text-center">
-							<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+							<td class="product-remove"><a href="/deleteProduct?id=<%=values._id %>"  onclick="return confirm('Are you want to delete <%= values.products.productName  %>')"><span class="ion-ios-close"></span></a></td>
 							
 							<td><%= i++ %></td>
 
@@ -64,13 +64,15 @@
 							
 							<td class="product-name">
 								<h3><%= values.products.productName %></h3>
-							</td>
+							</td>	
 							
 							<td class="price"><%= values.products.sellingPrice %></td>
 							
 							<td class="quantity">
 								<div class="input-group mb-3">
-								<button type="submit" class="quantity form-control input-number" onclick="changeQuantity('<%= values._id %>','<%= values.products._id %>',-1,'<%= userData._id %>')" >-</button> <button type="submit" class="quantity form-control input-number" ><%= values.quantity %></button><button class="quantity form-control input-number" onclick="changeQuantity('<%= values._id %>','<%= values.products._id %>',1,'<%= userData._id %>')" >+</button>
+								<button type="submit" class="quantity form-control input-number" onclick="changeQuantity('<%= values._id %>','<%= values.products._id %>',-1,'<%= userData._id %>')" >-</button>
+								 <span class="quantity form-control input-number p-3" id="<%= values.products._id %>"><%= values.quantity %></span>
+								 <button class="quantity form-control input-number" onclick="changeQuantity('<%= values._id %>','<%= values.products._id %>',1,'<%= userData._id %>')" >+</button>
 							  </div>
 						  </td>
 							<td class="total"><%= values.products.sellingPrice %></td>
@@ -183,21 +185,39 @@
 
 <script>
 	function changeQuantity(cartId,productId,count,userData){
+		let quantity = parseInt(document.getElementById(productId).innerHTML)
 		count = parseInt(count)
 		$.ajax({
 			url:'/changeProductQuantity',
 			data:{
 				cart:cartId,
 				product:productId,
-				count:count
+				count:count,
+				quantity:quantity
 			},
 			method:'post',
 			success:(response)=>{
-				alert("Success")
+				if(response.removeProduct){
+					alert("Product Removed")
+					location.reload()
+				}else{
+					document.getElementById(productId).innerHTML=quantity+count
+				}
 			}    
 		})
 	}
 </script>
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
 	  $(document).ready(function(){

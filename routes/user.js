@@ -24,6 +24,7 @@ router.get('/cart',userSessionCheck.userSessionChecker,userCart.userCart)
 router.get('/addToCart/:id',userSessionCheck.userSessionChecker,userCart.addToCart)
 router.post('/changeProductQuantity',userSessionCheck.userSessionChecker,userCart.changeProductQuantity)
 
+
 router.get('/viewSingleProduct',userProduct.showProductDetails)
 
 router.get('/viewCategory',userShop.viewShop)

@@ -1,3 +1,4 @@
+const e = require('express')
 const { response } = require('express')
 const { ObjectId } = require('mongodb')
 const collection = require('../config/collection')
@@ -86,14 +87,26 @@ module.exports = {
     },
     changeQuantity:(details)=>{
         details.count = parseInt(details.count)
+        details.quantity = parseInt(details.quantity)
+
         return new Promise((resolve,reject)=>{
+            if(details.count==-1 && details.quantity==1){
+                db.get().collection(collection.ADD_CART).updateOne({_id:ObjectId(details.cart)},
+                {
+                    $pull:{products:{item:ObjectId(details.product)}}
+                }
+                ).then((response)=>{
+                    resolve({removeProduct:true})
+                })
+            }else{  
             db.get().collection(collection.ADD_CART).updateOne({_id:ObjectId(details.cart),'products.item':ObjectId(details.product)},
             {
                 $inc :{'products.$.quantity':details.count}
             }
             ).then((response)=>{
-                resolve(true)
+                resolve({status:true})
             })
-        })
-    }
+        }
+    })
+},
 }   
