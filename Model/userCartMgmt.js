@@ -143,7 +143,7 @@ module.exports = {
                         total:{
                             $sum:{
                                 $multiply:[
-                                    "$quantity","$product.sellingPrice"
+                                    "$quantity","$products.sellingPrice"
                                 ]
                             }
                         }

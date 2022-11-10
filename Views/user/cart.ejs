@@ -66,7 +66,7 @@
 								<h3><%= values.products.productName %></h3>
 							</td>	
 							
-							<td class="price"><%= values.products.sellingPrice %></td>
+							<td class="price">Rs.<%= values.products.sellingPrice %></td>
 							
 							<td class="quantity">
 								<div class="input-group mb-3">
@@ -75,7 +75,7 @@
 								 <button class="quantity form-control input-number" onclick="changeQuantity('<%= values._id %>','<%= values.products._id %>',1,'<%= userData._id %>')" >+</button>
 							  </div>
 						  </td>
-							<td class="total"><%= values.products.sellingPrice %></td>
+							<td class="total">Rs.<%= values.products.sellingPrice %></td>
 						  </tr><!-- END TR-->
 						<% } %>
 						</tbody>
