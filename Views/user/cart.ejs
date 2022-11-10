@@ -55,7 +55,7 @@
 						<tbody>
 							<% let i=1; for(values of products) { %> 
 						  <tr class="text-center">
-							<td class="product-remove"><a href="/deleteProduct?id=<%=values._id %>"  onclick="return confirm('Are you want to delete <%= values.products.productName  %>')"><span class="ion-ios-close"></span></a></td>
+							<td class="product-remove"><a href="/deleteProduct?id=<%=values._id %>"><span class="ion-ios-close"></span></a></td>
 							
 							<td><%= i++ %></td>
 
@@ -83,7 +83,7 @@
 				  </div>
 			</div>
 		</div>
-		<!-- <div class="row justify-content-end">
+		<div class="row justify-content-end">
 			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
 				<div class="cart-total mb-3">
 					<h3>Coupon Code</h3>
@@ -97,7 +97,7 @@
 				</div>
 				<p><a href="" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
 			</div>
-			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+			<!-- <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
 				<div class="cart-total mb-3">
 					<h3>Estimate shipping and tax</h3>
 					<p>Enter your destination to get a shipping estimate</p>
@@ -117,7 +117,7 @@
 			</form>
 				</div>
 				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Estimate</a></p>
-			</div>
+			</div> -->
 			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
 				<div class="cart-total mb-3">
 					<h3>Cart Totals</h3>
@@ -129,20 +129,20 @@
 						<span>Delivery</span>
 						<span>$0.00</span>
 					</p>
-					<p class="d-flex">
+					<!-- <p class="d-flex">
 						<span>Discount</span>
 						<span>$3.00</span>
-					</p>
+					</p> -->
 					<hr>
 					<p class="d-flex total-price">
 						<span>Total</span>
 						<span>$17.60</span>
 					</p>
 				</div>
-				<p><a href="/checkout" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+				<p><a href="/placeOrder" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
 			</div>
 		</div>
-		</div> -->
+		</div>
 	</section>
 
 	<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
