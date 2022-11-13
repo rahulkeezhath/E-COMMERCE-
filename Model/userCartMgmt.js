@@ -152,7 +152,7 @@ module.exports = {
 
             ]).toArray()
             response.totalAmount = totalAmount
-            console.log(totalAmount[0].total);
+
             resolve(totalAmount[0].total)
         })
     }

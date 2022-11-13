@@ -49,7 +49,7 @@
 							<th>Product name</th>
 							<th>Price</th>
 							<th>Quantity</th>
-							<th>Total</th>
+							<!-- <th>Total</th> -->
 						  </tr>
 						</thead>
 						<tbody>
@@ -75,7 +75,7 @@
 								 <button class="quantity form-control input-number" onclick="changeQuantity('<%= values._id %>','<%= values.products._id %>',1,'<%= userData._id %>')" >+</button>
 							  </div>
 						  </td>
-							<td class="total">Rs.<%= values.products.sellingPrice %></td>
+							<!-- <td class="total">Rs.<%= values.products.sellingPrice %></td> -->
 						  </tr><!-- END TR-->
 						<% } %>
 						</tbody>
@@ -123,11 +123,11 @@
 					<h3>Cart Totals</h3>
 					<p class="d-flex">
 						<span>Subtotal</span>
-						<span>$20.60</span>
+						<span>Rs.<%= totalValue %></span>
 					</p>
 					<p class="d-flex">
 						<span>Delivery</span>
-						<span>$0.00</span>
+						<span>Rs.0</span>
 					</p>
 					<!-- <p class="d-flex">
 						<span>Discount</span>
@@ -136,7 +136,7 @@
 					<hr>
 					<p class="d-flex total-price">
 						<span>Total</span>
-						<span>$17.60</span>
+						Rs.<span id="totalAmount"><%= totalValue %></span>
 					</p>
 				</div>
 				<p><a href="/placeOrder" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
@@ -190,6 +190,7 @@
 		$.ajax({
 			url:'/changeProductQuantity',
 			data:{
+				user:userData,
 				cart:cartId,
 				product:productId,
 				count:count,
@@ -202,6 +203,8 @@
 					location.reload()
 				}else{
 					document.getElementById(productId).innerHTML=quantity+count
+					document.getElementById('totalAmount').innerHTML= response.result
+				
 				}
 			}    
 		})

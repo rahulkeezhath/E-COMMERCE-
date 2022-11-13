@@ -7,7 +7,8 @@ const userCart = async(req,res)=>{
     if(req.session.loggedIn){
     let products=  await userCartMgmt.getCartProducts(req.session.user._id)
     cartCount = await userCartMgmt.getCartCount(req.session.user._id)
-    res.render('user/cart',{admin:false,user:true,userData,products,cartCount})
+    let totalValue = await userCartMgmt.getTotalAmount(req.session.user._id)
+    res.render('user/cart',{admin:false,user:true,userData,products,cartCount,totalValue})
     }else{
         res.render('user/userLogin',{user:false,admin:false,userData})
     }
@@ -20,8 +21,13 @@ const addToCart = (req,res)=>{
 }
 
 const changeProductQuantity = (req,res,next)=>{
-    userCartMgmt.changeQuantity(req.body).then((response)=>{
-        res.json(response)
+    let userData = req.session.user
+    userCartMgmt.changeQuantity(req.body).then((response)=>{ 
+        userCartMgmt.getTotalAmount(userData._id).then((result)=>{
+            let totalValue = result.totalValue
+            res.json({response,result,totalValue})
+        })
+     
     })
 }
 

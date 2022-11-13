@@ -13,11 +13,16 @@ const placeOrder = async(req,res)=>{
   cartCount = await userCartMgmt.getCartCount(req.session.user._id)
   let products=  await userCartMgmt.getCartProducts(req.session.user._id)
   let totalAmount = await userCartMgmt.getTotalAmount(req.session.user._id)
-  res.render('user/placeOrder',{admin:false,user:true,userData,cartCount,products,totalAmount})
+  res.render('user/checkout',{admin:false,user:true,userData,cartCount,products,totalAmount})
   }
 }
 
+const payment = (req,res)=>{
+ console.log(req.body);
+ }
+
 module.exports = {
   userCheckout,
-  placeOrder
+  placeOrder,
+  payment
 }

@@ -36,5 +36,6 @@ router.get('/wishlist',userSessionCheck.userSessionChecker,userWishlist.userWish
 
 router.get('/checkout',userSessionCheck.userSessionChecker,userCheckout.userCheckout)
 router.get('/placeOrder',userSessionCheck.userSessionChecker,userCheckout.placeOrder)
+router.post('/placeOrder',userSessionCheck.userSessionChecker,userCheckout.payment)
 
 module.exports=router
